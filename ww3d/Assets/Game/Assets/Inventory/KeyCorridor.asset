@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8bfcbd776804a2eaaae480281bb4acf, type: 3}
+  m_Name: KeyCorridor
+  m_EditorClassIdentifier: Assembly-CSharp::KeyCorridor
+  sprite: {fileID: 21300000, guid: b64a8342e010e6a4195e5d9bca8e029e, type: 3}
+  amount: 1

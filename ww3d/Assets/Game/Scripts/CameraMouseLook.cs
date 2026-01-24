@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Camera))] // Скрипт сам проверит наличие компонента Camera
@@ -83,6 +84,10 @@ public class CameraMouseLook : MonoBehaviour {
 
     private void HandleZoom() {
         if (Mouse.current == null) {
+            return;
+        }
+
+        if (EventSystem.current.IsPointerOverGameObject()) {
             return;
         }
 

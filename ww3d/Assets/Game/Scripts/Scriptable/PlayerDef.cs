@@ -2,7 +2,7 @@
 using Transform = UnityEngine.Transform;
 
 [CreateAssetMenu(menuName = "Definitions/Player")]
-public class PlayerDef : EntityDefinition2<PlayerDef> {
+public class PlayerDef : GenericEntityDefinition<PlayerDef> {
 
     [SerializeField]
     private float speed;

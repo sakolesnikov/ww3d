@@ -22,6 +22,6 @@ public class DefaultTapCommandBuilder : ICommandBuilder {
         return pooledQueue;
     }
 
-    public Type GetEntityType() => typeof(NoEntityDef);
+    public Type GetEntityType() => typeof(NoGenericEntityDef);
 
 }

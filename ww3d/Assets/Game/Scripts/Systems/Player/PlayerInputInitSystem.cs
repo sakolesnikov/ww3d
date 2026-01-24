@@ -16,37 +16,44 @@ public class PlayerInputInitSystem : IInitSystem, IDisposeSystem {
     private Entity player;
 
     public void Init(EntityStore world) {
-        input.Player.Enable();
+        // input.Player.Enable();
         player = world.GetPlayer();
         if (player == default) {
             return;
         }
+
         playerTransform = player.GetComponent<TransformComponent>().Value;
         var cameraEntity = world.GetCamera();
         if (cameraEntity == default) {
             return;
         }
+
         camera = cameraEntity.GetComponent<CameraComponent>().Value;
-        // input.Player.Tap.performed += OnTapPerformed;
+        input.Player.Move.performed += OnMovePerformed;
     }
 
     public void Dispose(EntityStore world) {
-        input.Player.Disable();
-        // input.Player.Tap.performed -= OnTapPerformed;
+        // input.Player.Disable();
+        input.Player.Move.performed -= OnMovePerformed;
     }
 
-    private void OnTapPerformed(InputAction.CallbackContext context) {
+    private void OnMovePerformed(InputAction.CallbackContext context) {
         if (player == default || camera == null) {
             return;
         }
+
         if (context.control.device is not Pointer pointer) {
             return;
         }
 
-        var mousePos = pointer.position.ReadValue();
-        var worldPoint = camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0f));
-        worldPoint.z = 0f;
-        player.AddComponent(new TapIntentComponent { Target = worldPoint });
+        var screenPosition = pointer.position.ReadValue();
+        var ray = camera.ScreenPointToRay(screenPosition);
+        if (Physics.Raycast(ray, out var hit, Mathf.Infinity, Masks.Ground)) {
+            Debug.Log(hit.point + ", " + hit.collider.name);
+        }
+
+        // worldPoint.z = 0f;
+        // player.AddComponent(new TapIntentComponent { Target = worldPoint });
     }
 
 }

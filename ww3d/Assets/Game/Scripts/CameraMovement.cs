@@ -33,20 +33,20 @@ public class CameraMovement : MonoBehaviour {
         right.Normalize();
 
         // Вперед и Назад (теперь только по Z и X)
-        if (Keyboard.current.upArrowKey.isPressed) {
+        if (Keyboard.current.wKey.isPressed) {
             inputVector += forward;
         }
 
-        if (Keyboard.current.downArrowKey.isPressed) {
+        if (Keyboard.current.sKey.isPressed) {
             inputVector -= forward;
         }
 
         // Влево и Вправо
-        if (Keyboard.current.leftArrowKey.isPressed) {
+        if (Keyboard.current.aKey.isPressed) {
             inputVector -= right;
         }
 
-        if (Keyboard.current.rightArrowKey.isPressed) {
+        if (Keyboard.current.dKey.isPressed) {
             inputVector += right;
         }
 

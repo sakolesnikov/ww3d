@@ -13,7 +13,7 @@ public abstract class DefaultLifetimeScope<T> : LifetimeScope, INonRegisterable 
 
     protected override void Configure(IContainerBuilder builder) {
         var world = new EntityStore();
-        world.EventRecorder.Enabled = true;
+        // world.EventRecorder.Enabled = true;
         builder.RegisterInstance(world);
 
         var assembly = Assembly.GetExecutingAssembly();

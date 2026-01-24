@@ -3,7 +3,7 @@ using VContainer;
 
 [MenuScope]
 [LevelScope]
-[Order(1)]
+[Order(50)]
 public class EntityInitSystem : IInitSystem {
 
     [Inject]

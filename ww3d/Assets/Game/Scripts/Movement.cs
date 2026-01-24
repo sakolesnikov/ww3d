@@ -14,22 +14,21 @@ public class Movement : MonoBehaviour {
     private Ray ray;
     private FunnelModifier funnelModifier;
     private SimpleSmoothModifier simpleSmoothModifier;
+    private float lastMoveTime = -1f;
 
     private void Start() {
         funnelModifier = GetComponent<FunnelModifier>();
         simpleSmoothModifier = GetComponent<SimpleSmoothModifier>();
         input = new InputSystem_Actions();
         input.Player.Enable();
-        // input.Player.Tap.performed += OnTapPerformed;
-        input.Player.Move.performed += OnMovePerformed;
-        input.Player.Run.performed += OnRunPerformed;
+        // input.Player.Run.performed += OnRunPerformed;
+        // input.Player.Move.performed += OnTapPerformed;
     }
 
     private void OnDestroy() {
         input.Player.Disable();
-        // input.Player.Tap.performed -= OnTapPerformed;
-        input.Player.Move.performed -= OnMovePerformed;
-        input.Player.Run.performed -= OnRunPerformed;
+        // input.Player.Run.performed -= OnRunPerformed;
+        // input.Player.Move.performed -= OnTapPerformed;
     }
 
     private void Update() {
@@ -39,24 +38,41 @@ public class Movement : MonoBehaviour {
     }
 
     private void OnMovePerformed(InputAction.CallbackContext context) {
-        Debug.Log("Move performed");
+        lastMoveTime = Time.time;
+        Debug.Log($"Move performed at {lastMoveTime:F3}");
     }
 
     private void OnRunPerformed(InputAction.CallbackContext context) {
-        Debug.Log("Run performed");
+        var currentTime = Time.time;
+
+        if (lastMoveTime >= 0f) {
+            var delay = currentTime - lastMoveTime;
+            Debug.Log($"Run performed at {currentTime:F3}, delay since Move: {delay:F3} sec");
+        } else {
+            Debug.Log("Run performed, but Move was not triggered yet");
+        }
     }
-    
+
+    // private void OnMovePerformed(InputAction.CallbackContext context) {
+    //     Debug.Log("Move performed");
+    // }
+    //
+    // private void OnRunPerformed(InputAction.CallbackContext context) {
+    //     Debug.Log("Run performed");
+    // }
+
     private void OnTapPerformed(InputAction.CallbackContext context) {
         var mousePos = Vector2.zero;
         if (context.control.device is not Pointer pointer) {
             return;
         }
+
         // Debug.Log(context.interaction);
         mousePos = pointer.position.ReadValue();
         ray = Camera.main.ScreenPointToRay(mousePos);
+        //
+        // return;
 
-        return;
-        
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity, LayerMask.GetMask("Ground"))) {
             Debug.Log(hit.point + ", " + hit.collider.name);
             var path = ABPath.Construct(transform.position, hit.point);

@@ -25,7 +25,7 @@ public class CommandProvider : ISelfRegisterable, IInitializable {
     }
 
     public PooledCommandQueue GetCommands() {
-        if (dicCmdByEntityDef.TryGetValue(typeof(NoEntityDef), out var builder)) {
+        if (dicCmdByEntityDef.TryGetValue(typeof(NoGenericEntityDef), out var builder)) {
             return builder.Build();
         }
 

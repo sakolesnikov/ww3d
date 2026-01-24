@@ -5,11 +5,14 @@ using VContainer;
 public class HoverExitSignalImpl : GenericSignal<HoverExitSignal> {
 
     [Inject]
+    private readonly EntityStore world;
+    [Inject]
     private readonly CursorService cursorService;
 
     protected override void Signal(Signal<HoverExitSignal> signal) {
         signal.Entity.RemoveComponent<HoverComponent>();
-        cursorService.Default();
+        var entity = world.GetEntityById(signal.Event.EntityId);
+        entity.RemoveComponent<ShowMessageIntent>();
     }
 
     public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef.GetType() == typeof(CursorDef);

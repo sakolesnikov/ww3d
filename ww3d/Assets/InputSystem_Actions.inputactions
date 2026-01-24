@@ -7,22 +7,13 @@
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "Tap",
+                    "name": "Run",
                     "type": "Button",
-                    "id": "57500a08-c4ca-4295-a841-a9bc14090581",
+                    "id": "55a8d9cf-3dec-4551-8e45-8e4d01861cfc",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "MultiTap,Tap",
+                    "interactions": "MultiTap",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "d5ed96fc-b95e-46d5-9bfe-8c96ad478315",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
                     "name": "Move",
@@ -34,27 +25,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Run",
-                    "type": "Button",
-                    "id": "55a8d9cf-3dec-4551-8e45-8e4d01861cfc",
-                    "expectedControlType": "",
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "d5ed96fc-b95e-46d5-9bfe-8c96ad478315",
+                    "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "MultiTap",
-                    "initialStateCheck": false
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "d4e9d77d-b610-4ab0-8ccd-7e2bd1d919ce",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "a87ab380-92fc-4158-a1fa-73132aaf94f3",
@@ -116,7 +96,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "15cef263-9014-4fd5-94d9-4e4a6234a6ef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

@@ -17,8 +17,24 @@ public class LevelLifetimeScope : DefaultLifetimeScope<LevelScopeAttribute> {
 
 
         builder
-            .Register(container => container.Resolve<InventoryPoolFactory>().CreateItemPool(), Lifetime.Singleton)
+            .Register(container =>
+                container.Resolve<InventoryPoolFactory>().CreateItemPool(), Lifetime.Singleton)
             .Keyed(PrefabItemDef.Name);
+
+        builder
+            .Register(container =>
+                container.Resolve<EntityMonoPoolProvider>().Create(GetConfig<UIConfig>().MessagePrefab), Lifetime.Singleton)
+            .Keyed(MessageDef.Name);
+    }
+
+    private T GetConfig<T>() where T : ScriptableObject {
+        foreach (var config in configs) {
+            if (config is T result) {
+                return result;
+            }
+        }
+
+        return null;
     }
 
     private ObjectPool<ParticleSystem> CreateParticlePool(ParticleSystem prefab) {

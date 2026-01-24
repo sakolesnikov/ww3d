@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Definitions/Cursor", fileName = "Cursor")]
-public class CursorDef : EntityDefinition2<CursorDef> {
+public class CursorDef : GenericEntityDefinition<CursorDef> {
 
     [SerializeField]
     private Texture2D lookUp;

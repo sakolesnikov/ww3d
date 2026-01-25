@@ -15,8 +15,10 @@ public class LevelLifetimeScope : DefaultLifetimeScope<LevelScopeAttribute> {
         var ssm = new SimpleSmoothModifier
         {
             smoothType = SimpleSmoothModifier.SmoothType.Bezier,
+            // iterations = 3,
+            // offset = 0.1f
             subdivisions = 3,
-            bezierTangentLength = 0.15f
+            bezierTangentLength = 0.11f
         };
         builder.RegisterInstance(ssm);
 

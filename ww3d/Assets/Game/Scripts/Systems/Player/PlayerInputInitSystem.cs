@@ -28,14 +28,16 @@ public class PlayerInputInitSystem : IInitSystem, IDisposeSystem {
         }
 
         camera = cameraEntity.GetComponent<CameraComponent>().Value;
-        input.Player.Move.performed += OnMovePerformed;
+        input.Player.Walk.performed += OnWalkPerformed;
+        input.Player.Run.performed += OnRunPerformed;
     }
 
     public void Dispose(EntityStore world) {
-        input.Player.Move.performed -= OnMovePerformed;
+        input.Player.Walk.performed -= OnWalkPerformed;
+        input.Player.Run.performed -= OnRunPerformed;
     }
 
-    private void OnMovePerformed(InputAction.CallbackContext context) {
+    private void OnRunPerformed(InputAction.CallbackContext context) {
         if (player == default || camera == null) {
             return;
         }
@@ -45,11 +47,32 @@ public class PlayerInputInitSystem : IInitSystem, IDisposeSystem {
         }
 
         var screenPosition = pointer.position.ReadValue();
+        Move(screenPosition, MoveMode.Run);
+    }
+
+    private void OnWalkPerformed(InputAction.CallbackContext context) {
+        if (player == default || camera == null) {
+            return;
+        }
+
+        if (context.control.device is not Pointer pointer) {
+            return;
+        }
+
+        var screenPosition = pointer.position.ReadValue();
+        Move(screenPosition, MoveMode.Walk);
+    }
+
+    private void Move(Vector2 screenPosition, MoveMode mode) {
         var ray = camera.ScreenPointToRay(screenPosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity, Masks.Ground)) {
-            Debug.Log(hit.point + ", " + hit.collider.name);
             var entityMono = hit.collider.GetComponent<AbstractEntityMono>();
-            player.AddComponent(new TapIntentComponent { Target = hit.point, Entity = entityMono != null ? entityMono.GetEntity() : default });
+            player.AddComponent(new TapIntentComponent
+            {
+                Target = hit.point,
+                Entity = entityMono != null ? entityMono.GetEntity() : default,
+                MoveMode = mode
+            });
         }
     }
 

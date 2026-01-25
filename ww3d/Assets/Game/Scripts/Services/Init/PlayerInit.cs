@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Friflo.Engine.ECS;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -11,13 +12,29 @@ public class PlayerInit : IEntityInitialization, IDisposable {
     private readonly ObjectPool<PooledCommandQueue> commandPool;
     [Inject]
     private readonly EntityStore world;
+    [Inject]
+    private readonly PlayerWalkState walkState;
+    [Inject]
+    private readonly PlayerRunState runState;
+    [Inject]
+    private readonly PlayerIdleState idleState;
+    [Inject]
+    private readonly PlayerConfig playerConfig;
 
     public void Initialize(Entity entity) {
         var go = entity.GetGameObject();
         var playerDef = entity.GetComponent<DefinitionComponent>().GetValue<PlayerDef>();
-        entity.AddComponent(new SpeedComponent { Value = playerDef.Speed });
+        entity.AddComponent(new SpeedComponent { Value = playerConfig.WalkSpeed });
         entity.AddComponent(new AnimatorComponent { Value = go.GetComponentInChildren<Animator>() });
         entity.AddComponent(new ActiveItemComponent { Index = 0 });
+
+        var stateMachine = new StateMachine(entity);
+        stateMachine.AddState(idleState);
+        stateMachine.AddState(walkState);
+        stateMachine.AddState(runState);
+        stateMachine.SetCurrentState(typeof(PlayerIdleState));
+        entity.AddComponent(new FSMComponent { Value = stateMachine, CurrentTask = UniTask.CompletedTask });
+        entity.AddComponent(new ActiveItemComponent { Index = 1 });
         entity.OnComponentChanged += OnComponentChanged;
     }
 

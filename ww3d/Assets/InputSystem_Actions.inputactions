@@ -12,11 +12,11 @@
                     "id": "55a8d9cf-3dec-4551-8e45-8e4d01861cfc",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "MultiTap",
+                    "interactions": "MultiTap(tapDelay=0.25)",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Move",
+                    "name": "Walk",
                     "type": "Button",
                     "id": "3a350978-d42a-4c60-95a5-a47ef52e69bb",
                     "expectedControlType": "",
@@ -53,7 +53,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

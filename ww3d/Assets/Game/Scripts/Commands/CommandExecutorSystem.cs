@@ -1,25 +1,20 @@
 ﻿using Friflo.Engine.ECS;
 
 [LevelScope]
-public class CommandExecutorSystem : QueryUpdateSystem<CommandPlanComponent> {
+public class CommandExecutorSystem : EntityListSystem<CommandPlanComponent> {
 
-    private readonly EntityList entityList = new();
+    protected override void ProcessEntity(ref CommandPlanComponent component, Entity entity) {
+        ref var planComp = ref entity.GetComponent<CommandPlanComponent>();
 
-    protected override void OnUpdate() {
-        Query.Entities.ToEntityList(entityList);
-        foreach (var entity in entityList) {
-            ref var planComp = ref entity.GetComponent<CommandPlanComponent>();
-
-            if (!TryGetOrInitCommand(entity, ref planComp, out var cmd)) {
-                continue;
-            }
-
-            if (!cmd.IsFinished(entity)) {
-                continue;
-            }
-
-            FinishCommand(entity, ref planComp, cmd);
+        if (!TryGetOrInitCommand(entity, ref planComp, out var cmd)) {
+            return;
         }
+
+        if (!cmd.IsFinished(entity)) {
+            return;
+        }
+
+        FinishCommand(entity, ref planComp, cmd);
     }
 
     private bool TryGetOrInitCommand(

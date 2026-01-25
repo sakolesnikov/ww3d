@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using VContainer;
 using VContainer.Unity;
 
-[LevelScope]
+//Deprecated
 public class CommandProvider : ISelfRegisterable, IInitializable {
 
     [Inject]

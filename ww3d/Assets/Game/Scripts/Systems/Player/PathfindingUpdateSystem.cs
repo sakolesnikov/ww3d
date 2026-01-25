@@ -1,19 +1,15 @@
 ﻿using Friflo.Engine.ECS;
 using Pathfinding;
+using UnityEngine;
 using VContainer;
 
 [LevelScope]
 public class PathfindingUpdateSystem : QueryUpdateSystem<MoveIntentComponent> {
 
-    private PlayerDef playerDef;
     [Inject]
     private readonly FunnelModifier funnelModifier;
     [Inject]
     private readonly SimpleSmoothModifier simpleSmoothModifier;
-
-    protected override void OnAddStore(EntityStore store) {
-        playerDef = store.GetPlayerDef();
-    }
 
     protected override void OnUpdate() {
         Query.ForEachEntity((ref MoveIntentComponent intent, Entity entity) => {
@@ -22,11 +18,17 @@ public class PathfindingUpdateSystem : QueryUpdateSystem<MoveIntentComponent> {
             ref var transformComp = ref entity.GetComponent<TransformComponent>();
             var transform = transformComp.Value;
 
-            var endNod = AstarPath.active.GetNearest(intent.Target, NNConstraint.Walkable);
-            var pos = endNod.position;
-            // pos.z = 0f;
+            var endNode = AstarPath.active.GetNearest(intent.Target, NNConstraint.Walkable);
+            if (entity.HasComponent<PathFollowerComponent>()) {
+                ref var pathFollowerComp = ref entity.GetComponent<PathFollowerComponent>();
+                if (pathFollowerComp.TargetNode.node.NodeIndex == endNode.node.NodeIndex && pathFollowerComp.MoveMode != intent.MoveMode) {
+                    pathFollowerComp.MoveMode = intent.MoveMode;
+                    Debug.Log("change move mode");
+                    return;
+                }
+            }
 
-            var path = ABPath.Construct(transform.position, pos);
+            var path = ABPath.Construct(transform.position, endNode.position);
 
             AstarPath.StartPath(path);
             path.BlockUntilCalculated();
@@ -37,7 +39,8 @@ public class PathfindingUpdateSystem : QueryUpdateSystem<MoveIntentComponent> {
 
             funnelModifier.Apply(path);
             simpleSmoothModifier.Apply(path);
-            CommandBuffer.AddComponent(entity.Id, new PathFollowerComponent { Waypoints = path.vectorPath, CurrentIndex = 1 });
+            CommandBuffer.AddComponent(entity.Id,
+                new PathFollowerComponent { Waypoints = path.vectorPath, CurrentIndex = 1, MoveMode = intent.MoveMode, TargetNode = endNode });
         });
     }
 

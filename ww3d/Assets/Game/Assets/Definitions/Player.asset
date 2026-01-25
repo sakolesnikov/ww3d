@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ff94da3df54dd1b1a72f174df9d7a7, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDef
-  speed: 1.2
-  cellMarker: {fileID: 2821981957898692395, guid: ea3d5d75b87358446a07d3d968a219f7, type: 3}
+  walkSpeed: 2.2
+  runSpeed: 4
   container: {fileID: 0}

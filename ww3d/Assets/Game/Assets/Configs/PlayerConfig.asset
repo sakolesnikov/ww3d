@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b23e36af9448749f7dd751e86bf998, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
-  walkSpeed: 0
-  runSpeed: 0
-  container: {fileID: 0}
+  walk: 2.2
+  run: 4.4
+  rotationWalk: 400
+  rotationRun: 550

@@ -10,7 +10,7 @@ public static class EntityStoreExtensions {
     }
 
     public static Entity GetCamera(this EntityStore world) => world.GetUniqueEntitySafe(CameraDef.Name);
-    
+
     public static Entity GetPlayer(this EntityStore world) => world.GetUniqueEntitySafe(PlayerDef.Name);
 
     public static Entity GetExchange(this EntityStore world) => world.GetUniqueEntitySafe(ExchangeDef.Name);
@@ -33,10 +33,11 @@ public static class EntityStoreExtensions {
         var index = world.ComponentIndex<UniqueEntity, string>();
         var entities = index[entityName];
         if (entities.Count == 0) {
-            Debug.Log("Entity " + entityName + " not found");
+            // Debug.Log("Entity " + entityName + " not found");
             return default;
         }
+
         return entities[0];
     }
-    
+
 }

@@ -13,12 +13,12 @@ public class Movement : MonoBehaviour {
     private List<Vector3> waypoints = new();
     private Ray ray;
     private FunnelModifier funnelModifier;
-    private SimpleSmoothModifier simpleSmoothModifier;
+    private Pathfinding.SimpleSmoothModifier simpleSmoothModifier;
     private float lastMoveTime = -1f;
 
     private void Start() {
         funnelModifier = GetComponent<FunnelModifier>();
-        simpleSmoothModifier = GetComponent<SimpleSmoothModifier>();
+        simpleSmoothModifier = GetComponent<Pathfinding.SimpleSmoothModifier>();
         input = new InputSystem_Actions();
         input.Player.Enable();
         // input.Player.Run.performed += OnRunPerformed;

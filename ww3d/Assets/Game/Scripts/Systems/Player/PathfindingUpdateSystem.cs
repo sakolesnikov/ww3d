@@ -1,10 +1,15 @@
 ﻿using Friflo.Engine.ECS;
 using Pathfinding;
+using VContainer;
 
 [LevelScope]
 public class PathfindingUpdateSystem : QueryUpdateSystem<MoveIntentComponent> {
 
     private PlayerDef playerDef;
+    [Inject]
+    private readonly FunnelModifier funnelModifier;
+    [Inject]
+    private readonly SimpleSmoothModifier simpleSmoothModifier;
 
     protected override void OnAddStore(EntityStore store) {
         playerDef = store.GetPlayerDef();
@@ -19,7 +24,7 @@ public class PathfindingUpdateSystem : QueryUpdateSystem<MoveIntentComponent> {
 
             var endNod = AstarPath.active.GetNearest(intent.Target, NNConstraint.Walkable);
             var pos = endNod.position;
-            pos.z = 0f;
+            // pos.z = 0f;
 
             var path = ABPath.Construct(transform.position, pos);
 
@@ -30,10 +35,8 @@ public class PathfindingUpdateSystem : QueryUpdateSystem<MoveIntentComponent> {
                 return;
             }
 
-            // foreach (var point in path.vectorPath) {
-            // Object.Instantiate(playerDef.CellMarker, point, Quaternion.identity);
-            // }
-
+            funnelModifier.Apply(path);
+            simpleSmoothModifier.Apply(path);
             CommandBuffer.AddComponent(entity.Id, new PathFollowerComponent { Waypoints = path.vectorPath, CurrentIndex = 1 });
         });
     }

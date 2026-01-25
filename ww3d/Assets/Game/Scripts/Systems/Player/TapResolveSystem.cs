@@ -1,27 +1,64 @@
 ﻿using Friflo.Engine.ECS;
+using UnityEngine.Pool;
 using VContainer;
 
 [LevelScope]
-public class TapResolveSystem : QueryUpdateSystem<TapIntentComponent> {
+public class TapResolveSystem : EntityListSystem<TapIntentComponent> {
 
-    private Entity cursor;
+    [Inject]
+    private readonly ObjectPool<PooledCommandQueue> pool;
     [Inject]
     private readonly CommandProvider commandProvider;
-    private readonly EntityList entityList = new();
+    [Inject]
+    private readonly TapProviderResolver tapProviderResolver;
 
-    protected override void OnAddStore(EntityStore store) {
-        cursor = store.GetCursor();
-    }
-
-    protected override void OnUpdate() {
-        Query.Entities.ToEntityList(entityList);
-        foreach (var entity in entityList) {
-            var queue = ResolveCommandQueue(entity);
-            entity.EmitSignal(new NewCommandPlanSignal { Value = queue });
-            entity.RemoveComponent<TapIntentComponent>();
+    protected override void ProcessEntity(ref TapIntentComponent tap, Entity player) {
+        EntityDefinition def = null;
+        if (!tap.Entity.IsNull) {
+            def = tap.Entity.GetComponent<DefinitionComponent>().Value;
         }
+
+        var ctx = new TapContext { Actor = player, TargetPosition = tap.Target, TargetEntity = tap.Entity, EntityDef = def };
+
+        var provider = tapProviderResolver.Resolve(ctx);
+        if (provider != null) {
+            var q = pool.Get();
+            provider.Build(ctx, q);
+            player.EmitSignal(new NewCommandPlanSignal { Value = q });
+        }
+
+        player.RemoveComponent<TapIntentComponent>();
+
+
+        // if (tapIntentComp.Entity.IsNull) {
+        //     player.EmitSignal(new MoveToSignal { Target = tapIntentComp.Target });
+        // } else {
+        //     var def = tapIntentComp.Entity
+        //         .GetComponent<DefinitionComponent>()
+        //         .Value;
+        //     player.EmitSignal(new NewCommandPlanSignal { Value = commandProvider.GetCommands(def) });
+        // }
+        //
+        // player.RemoveComponent<TapIntentComponent>();
     }
 
+    // protected override void OnUpdate() {
+    //     Query.Entities.ToEntityList(entityList);
+    //     foreach (var player in entityList) {
+    //         ref var tapIntentComp = ref player.GetComponent<TapIntentComponent>();
+    //         if (tapIntentComp.Entity.IsNull) {
+    //             player.EmitSignal(new MoveToSignal { Target = tapIntentComp.Target });
+    //         } else {
+    //             var def = tapIntentComp.Entity
+    //                 .GetComponent<DefinitionComponent>()
+    //                 .Value;
+    //             player.EmitSignal(new NewCommandPlanSignal { Value = commandProvider.GetCommands(def) });
+    //         }
+    //
+    //         player.RemoveComponent<TapIntentComponent>();
+    //     }
+    // }
+/*
     private PooledCommandQueue ResolveCommandQueue(Entity player) {
         if (cursor.TryGetComponent<HoverComponent>(out var hover)) {
             var def = hover.Entity
@@ -37,5 +74,6 @@ public class TapResolveSystem : QueryUpdateSystem<TapIntentComponent> {
 
         return commandProvider.GetCommands();
     }
+*/
 
 }

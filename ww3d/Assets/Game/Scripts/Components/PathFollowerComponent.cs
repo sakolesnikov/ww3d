@@ -6,6 +6,7 @@ public struct PathFollowerComponent : IComponent {
 
     public List<Vector3> Waypoints;
     public int CurrentIndex;
+    public bool StartedMoving;
     public Vector3 CurrentTarget => Waypoints[CurrentIndex];
     public bool IsFinished => Waypoints == null || CurrentIndex >= Waypoints.Count;
 

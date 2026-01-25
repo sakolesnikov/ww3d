@@ -12,6 +12,14 @@ public class LevelLifetimeScope : DefaultLifetimeScope<LevelScopeAttribute> {
             builder.RegisterInstance(scriptableObject).As(scriptableObject.GetType());
         }
 
+        var ssm = new SimpleSmoothModifier
+        {
+            smoothType = SimpleSmoothModifier.SmoothType.Bezier,
+            subdivisions = 3,
+            bezierTangentLength = 0.15f
+        };
+        builder.RegisterInstance(ssm);
+
         builder.Register<InputSystem_Actions>(Lifetime.Singleton);
         builder.RegisterInstance(new ObjectPool<PooledCommandQueue>(() => new PooledCommandQueue(), actionOnRelease: cq => cq.Clear()));
 

@@ -1,7 +1,6 @@
 ﻿using Friflo.Engine.ECS;
 using UnityEngine;
 
-[LevelScope]
 [Order(5)]
 public class AnimationUpdateSystem : QueryUpdateSystem<PathFollowerComponent> {
 
@@ -10,6 +9,9 @@ public class AnimationUpdateSystem : QueryUpdateSystem<PathFollowerComponent> {
     private static readonly string[] runDirections = { "Run N", "Run NW", "Run W", "Run SW", "Run S", "Run SE", "Run E", "Run NE" };
     private int lastDirection;
     private Animator animator;
+    private readonly int startMoveAngleThreshold = 3;
+    private bool walk;
+    private bool canMove;
 
     protected override void OnUpdate() {
         Query.ForEachEntity((ref PathFollowerComponent follower, Entity entity) => {
@@ -18,12 +20,31 @@ public class AnimationUpdateSystem : QueryUpdateSystem<PathFollowerComponent> {
 
             var moveDir = Vector2.zero;
 
-            if (!follower.IsFinished) {
-                var worldDir = follower.CurrentTarget - transform.position;
-                moveDir = new Vector2(worldDir.x, worldDir.y).normalized;
+            if (follower.IsFinished) {
+                return;
             }
 
-            UpdateAnimationState(animatorComp.Value, moveDir);
+            var worldDir = follower.CurrentTarget - transform.position;
+            moveDir = new Vector2(worldDir.x, worldDir.y).normalized;
+            var targetRotation = Quaternion.LookRotation(moveDir, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                100f * Time.deltaTime
+            );
+            var angle = Quaternion.Angle(transform.rotation, targetRotation);
+
+            if (!canMove) {
+                if (angle <= startMoveAngleThreshold) {
+                    canMove = true;
+                    if (!walk) {
+                        walk = true;
+                        animatorComp.Value.CrossFade("Walk", 0.1f);
+                    }
+                }
+            }
+
+            // UpdateAnimationState(animatorComp.Value, moveDir);
         });
     }
 

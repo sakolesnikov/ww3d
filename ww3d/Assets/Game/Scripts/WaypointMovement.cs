@@ -80,7 +80,7 @@ public class WaypointMovement : MonoBehaviour {
         }
 
         // движение
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        transform.position += moveDir * (moveSpeed * Time.deltaTime);
     }
 
 }

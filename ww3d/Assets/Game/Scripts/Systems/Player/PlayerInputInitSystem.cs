@@ -16,7 +16,6 @@ public class PlayerInputInitSystem : IInitSystem, IDisposeSystem {
     private Entity player;
 
     public void Init(EntityStore world) {
-        // input.Player.Enable();
         player = world.GetPlayer();
         if (player == default) {
             return;
@@ -33,7 +32,6 @@ public class PlayerInputInitSystem : IInitSystem, IDisposeSystem {
     }
 
     public void Dispose(EntityStore world) {
-        // input.Player.Disable();
         input.Player.Move.performed -= OnMovePerformed;
     }
 
@@ -50,10 +48,9 @@ public class PlayerInputInitSystem : IInitSystem, IDisposeSystem {
         var ray = camera.ScreenPointToRay(screenPosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity, Masks.Ground)) {
             Debug.Log(hit.point + ", " + hit.collider.name);
+            var entityMono = hit.collider.GetComponent<AbstractEntityMono>();
+            player.AddComponent(new TapIntentComponent { Target = hit.point, Entity = entityMono != null ? entityMono.GetEntity() : default });
         }
-
-        // worldPoint.z = 0f;
-        // player.AddComponent(new TapIntentComponent { Target = worldPoint });
     }
 
 }

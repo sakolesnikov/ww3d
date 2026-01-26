@@ -15,7 +15,7 @@ public class PlayerIdleState : DefaultState {
         var has = entity.HasComponent<PathFollowerComponent>();
         if (has) {
             ref var pathFollowerComp = ref entity.GetComponent<PathFollowerComponent>();
-            if (has && pathFollowerComp.StartedMoving) {
+            if (has) {
                 var type = pathFollowerComp.MoveMode == MoveMode.Walk ? typeof(PlayerWalkState) : typeof(PlayerRunState);
                 return UniTask.FromResult(type);
             }

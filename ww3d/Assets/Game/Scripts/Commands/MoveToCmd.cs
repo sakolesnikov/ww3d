@@ -9,7 +9,6 @@ public struct MoveToCmd : ICommand {
     public MoveMode MoveMode;
 
     public void Init(Entity actor) {
-        Debug.Log("MoveToCmd.Init");
         actor.AddComponent(new MoveIntentComponent { Target = Target, MoveMode = MoveMode, endNode = endNode });
     }
 

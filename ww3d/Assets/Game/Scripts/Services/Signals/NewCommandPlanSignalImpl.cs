@@ -12,8 +12,6 @@ public class NewCommandPlanSignalImpl : GenericSignal<NewCommandPlanSignal> {
         var player = signal.Entity;
 
         if (player.HasComponent<ActiveCommandComponent>()) {
-            // ref var active = ref player.GetComponent<ActiveCommandComponent>();
-            // active.Value.Break(player);
             player.RemoveComponent<ActiveCommandComponent>();
         }
 

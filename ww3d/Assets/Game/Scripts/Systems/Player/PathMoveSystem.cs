@@ -1,9 +1,9 @@
 ﻿using Friflo.Engine.ECS;
 using UnityEngine;
 
+[Order(10)]
 [LevelScope]
-[Order(1)]
-public class PathMoveUpdateSystem : QueryUpdateSystem<PathFollowerComponent> {
+public class PathMoveSystem : QueryUpdateSystem<PathFollowerComponent> {
 
     protected override void OnUpdate() {
         Query.ForEachEntity((ref PathFollowerComponent follower, Entity entity) => {
@@ -22,21 +22,11 @@ public class PathMoveUpdateSystem : QueryUpdateSystem<PathFollowerComponent> {
             toTarget.y = 0f;
             var dirToTarget = toTarget.normalized;
 
-
             var desiredRot = Quaternion.LookRotation(dirToTarget, Vector3.up);
 
 
             var maxDegrees = speedComp.Rotation * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRot, maxDegrees);
-
-            if (!follower.StartedMoving) {
-                // var angle = Quaternion.Angle(transform.rotation, desiredRot);
-                // if (angle > 15f) {
-                //     return;
-                // }
-
-                follower.StartedMoving = true;
-            }
 
             var step = speedComp.Value * Time.deltaTime;
             var newPos = Vector3.MoveTowards(pos, target, step);

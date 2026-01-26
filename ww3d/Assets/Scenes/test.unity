@@ -446,6 +446,7 @@ Transform:
   - {fileID: 4830534182252004355}
   - {fileID: 2866615190333141038}
   - {fileID: 217418170}
+  - {fileID: 1183746579}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &328085956
@@ -1709,11 +1710,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 303827173}
     m_Modifications:
     - target: {fileID: 4633803237163933454, guid: 2814576bba541474689b1f50b2e05f36, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -530.5038
+      value: -30.503784
       objectReference: {fileID: 0}
     - target: {fileID: 4633803237163933454, guid: 2814576bba541474689b1f50b2e05f36, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1760,6 +1761,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2814576bba541474689b1f50b2e05f36, type: 3}
+--- !u!4 &1183746579 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4633803237163933454, guid: 2814576bba541474689b1f50b2e05f36, type: 3}
+  m_PrefabInstance: {fileID: 1183746578}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1214035514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1988,14 +1994,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 303827173}
     m_Modifications:
-    - target: {fileID: 1453923755459513373, guid: aeb96f16d5861bb4a8a8c3cb48640b87, type: 3}
-      propertyPath: tooltipKey
-      value: nitrogen1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384260918173446987, guid: aeb96f16d5861bb4a8a8c3cb48640b87, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 07c2cecca7c61704ab27cd5a6761ef3b, type: 2}
     - target: {fileID: 3915730749610967329, guid: aeb96f16d5861bb4a8a8c3cb48640b87, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.260027
@@ -2039,10 +2037,6 @@ PrefabInstance:
     - target: {fileID: 4564157043361256581, guid: aeb96f16d5861bb4a8a8c3cb48640b87, type: 3}
       propertyPath: m_Name
       value: Nitrogen1 (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564157043361256581, guid: aeb96f16d5861bb4a8a8c3cb48640b87, type: 3}
-      propertyPath: m_TagString
-      value: Props
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2811,6 +2805,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 07c2cecca7c61704ab27cd5a6761ef3b, type: 2}
+    - target: {fileID: 2384260918173446987, guid: aeb96f16d5861bb4a8a8c3cb48640b87, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bbd9c61f9fce3f542873f77410401632, type: 2}
     - target: {fileID: 3915730749610967329, guid: aeb96f16d5861bb4a8a8c3cb48640b87, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.260027
@@ -3613,4 +3611,3 @@ SceneRoots:
   - {fileID: 1131872620}
   - {fileID: 513356787}
   - {fileID: 2642129048689520327}
-  - {fileID: 1183746578}

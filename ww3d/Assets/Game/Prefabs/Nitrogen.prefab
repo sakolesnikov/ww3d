@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 1453923755459513373}
   m_Layer: 8
   m_Name: Nitrogen
-  m_TagString: Untagged
+  m_TagString: Props
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d895f5c74b541b78ccbf2a1bc31fe3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tooltip
-  tooltipKey: 
+  tooltipKey: nitrogen1
 --- !u!1 &5248591631201573604
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,8 +215,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: db19ec5f69072334b80c122d2df3e2a1, type: 2}
-  - {fileID: 2100000, guid: 0c8a720eedc0a5c48b90f1136126ba06, type: 2}
+  - {fileID: 2100000, guid: 07c2cecca7c61704ab27cd5a6761ef3b, type: 2}
+  - {fileID: 2100000, guid: bbd9c61f9fce3f542873f77410401632, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

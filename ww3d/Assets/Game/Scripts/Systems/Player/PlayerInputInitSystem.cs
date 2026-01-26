@@ -1,4 +1,5 @@
 ﻿using Friflo.Engine.ECS;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
@@ -65,7 +66,9 @@ public class PlayerInputInitSystem : IInitSystem, IDisposeSystem {
 
     private void Move(Vector2 screenPosition, MoveMode mode) {
         var ray = camera.ScreenPointToRay(screenPosition);
-        if (Physics.Raycast(ray, out var hit, Mathf.Infinity, Masks.Ground)) {
+        if (Physics.Raycast(ray, out var hit, Mathf.Infinity, Masks.Ground | Masks.Interactable)) {
+            var node = AstarPath.active.GetNearest(hit.point, NNConstraint.Walkable);
+            Debug.Log($"hit.point {hit.point} node.position {node.position} node.node.position {(Vector3)node.node.position}");
             var entityMono = hit.collider.GetComponent<AbstractEntityMono>();
             player.AddComponent(new TapIntentComponent
             {

@@ -14,16 +14,16 @@ public class PathMoveSystem : QueryUpdateSystem<PathFollowerComponent> {
 
             var transform = entity.GetTransform();
             ref var speedComp = ref entity.GetComponent<SpeedComponent>();
-
             var pos = transform.position;
             var target = follower.CurrentTarget;
-
             var toTarget = target - pos;
             toTarget.y = 0f;
-            var dirToTarget = toTarget.normalized;
 
-            var desiredRot = Quaternion.LookRotation(dirToTarget, Vector3.up);
-
+            var desiredRot = transform.rotation;
+            if (toTarget.sqrMagnitude > 0.0001f) {
+                var dirToTarget = toTarget.normalized;
+                desiredRot = Quaternion.LookRotation(dirToTarget, Vector3.up);
+            }
 
             var maxDegrees = speedComp.Rotation * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRot, maxDegrees);

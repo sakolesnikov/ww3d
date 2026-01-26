@@ -2,6 +2,6 @@
 
 public struct LootComponent : IComponent {
 
-    public LootDef Value;
+    public LootDef[] Values;
 
 }

@@ -1,6 +1,4 @@
-﻿using Friflo.Engine.ECS;
-using UnityEngine;
-using VContainer;
+﻿using UnityEngine;
 
 public abstract class LootDef : EntityDefinition {
 
@@ -11,12 +9,12 @@ public abstract class LootDef : EntityDefinition {
     public Sprite Sprite => sprite;
     public int Amount => amount;
 
-    public void Initialize(Entity container, GameObject go, IObjectResolver resolver) {
-        var world = resolver.Resolve<EntityStore>();
-        var lootEntity = world.CreateEntity();
-        lootEntity.AddComponent(new LootComponent { Value = this });
-        container.AddRelation(new ContainsRelation { Entity = lootEntity });
-    }
+    // public void Initialize(Entity container, GameObject go, IObjectResolver resolver) {
+    //     var world = resolver.Resolve<EntityStore>();
+    //     var lootEntity = world.CreateEntity();
+    //     lootEntity.AddComponent(new LootComponent { Value = this });
+    //     container.AddRelation(new ContainsRelation { Entity = lootEntity });
+    // }
 
 }
 

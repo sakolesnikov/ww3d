@@ -35,6 +35,10 @@ public class PathfindingSystem : QueryUpdateSystem<MoveIntentComponent> {
                 return;
             }
 
+            if (path.vectorPath.Count <= 1) {
+                return;
+            }
+
             funnelModifier.Apply(path);
             simpleSmoothModifier.Apply(path);
             CommandBuffer.AddComponent(entity.Id,

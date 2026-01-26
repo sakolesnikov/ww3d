@@ -23,4 +23,6 @@ public class GroundMoveTapProvider : ITapProvider {
         });
     }
 
+    public int Order => 10;
+
 }

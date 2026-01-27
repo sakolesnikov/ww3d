@@ -20,13 +20,13 @@ public class PathfindingSystem : QueryUpdateSystem<MoveIntentComponent> {
 
             if (entity.HasComponent<PathFollowerComponent>()) {
                 ref var pathFollowerComp = ref entity.GetComponent<PathFollowerComponent>();
-                if (pathFollowerComp.TargetNode.node.NodeIndex == intent.endNode.node.NodeIndex && pathFollowerComp.MoveMode != intent.MoveMode) {
+                if (pathFollowerComp.TargetNode.node.NodeIndex == intent.Node.node.NodeIndex && pathFollowerComp.MoveMode != intent.MoveMode) {
                     pathFollowerComp.MoveMode = intent.MoveMode;
                     return;
                 }
             }
 
-            var path = ABPath.Construct(transform.position, intent.endNode.position);
+            var path = ABPath.Construct(transform.position, intent.Node.position);
 
             AstarPath.StartPath(path);
             path.BlockUntilCalculated();
@@ -42,7 +42,7 @@ public class PathfindingSystem : QueryUpdateSystem<MoveIntentComponent> {
             funnelModifier.Apply(path);
             simpleSmoothModifier.Apply(path);
             CommandBuffer.AddComponent(entity.Id,
-                new PathFollowerComponent { Waypoints = path.vectorPath, CurrentIndex = 1, MoveMode = intent.MoveMode, TargetNode = intent.endNode });
+                new PathFollowerComponent { Waypoints = path.vectorPath, CurrentIndex = 1, MoveMode = intent.MoveMode, TargetNode = intent.Node });
         });
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public struct TapIntentComponent : IComponent {
 
-    public Vector3 Target;
+    public Vector3 Position;
     public Entity Entity;
     public MoveMode MoveMode;
 

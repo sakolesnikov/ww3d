@@ -13,7 +13,7 @@ public abstract class AbstractEntityMono : MonoBehaviour {
     private void Awake() {
         CreateEntity();
         PostAwake();
-        entityAware = GetComponents<IEntityAware>();
+        entityAware = GetComponentsInChildren<IEntityAware>();
         foreach (var ea in entityAware) {
             ea.OnEntityReady(ref Entity);
         }

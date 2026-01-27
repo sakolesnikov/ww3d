@@ -9,4 +9,8 @@ public struct AnimatorComponent : IComponent {
         Value.CrossFade(animationName, 0.1f);
     }
 
+    public void CrossFade(string animationName, float duration) {
+        Value.CrossFade(animationName, duration);
+    }
+
 }

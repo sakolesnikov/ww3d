@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Definitions/Camera")]
+[CreateAssetMenu(menuName = "Definitions/Camera", fileName = "Camera")]
 public class CameraDef : GenericEntityDefinition<CameraDef> { }

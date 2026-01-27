@@ -4,5 +4,7 @@
     public const string ANIMATION_IDLE = "Idle";
     public const string ANIMATION_WALK = "Walk";
     public const string ANIMATION_RUN = "Run";
+    public const string ANIMATION_OPEN = "Open";
+    public const string ANIMATION_CLOSE = "Close";
 
 }

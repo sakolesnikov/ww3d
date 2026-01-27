@@ -1,4 +1,5 @@
 ﻿using Friflo.Engine.ECS;
+using Pathfinding;
 using UnityEngine.Pool;
 using VContainer;
 
@@ -16,7 +17,16 @@ public class TapResolveSystem : EntityListSystem<TapIntentComponent> {
             def = tap.Entity.GetComponent<DefinitionComponent>().Value;
         }
 
-        var ctx = new TapContext { Actor = player, TargetPosition = tap.Target, TargetEntity = tap.Entity, EntityDef = def, MoveMode = tap.MoveMode };
+        var endNode = AstarPath.active.GetNearest(tap.Position, NNConstraint.Walkable);
+        var ctx = new TapContext
+        {
+            Actor = player,
+            TargetPosition = tap.Position,
+            TargetEntity = tap.Entity,
+            EntityDef = def,
+            MoveMode = tap.MoveMode,
+            Node = endNode
+        };
 
         var provider = tapProviderResolver.Resolve(ctx);
         if (provider != null) {

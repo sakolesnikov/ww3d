@@ -4,7 +4,7 @@ using UnityEngine;
 
 public struct MoveIntentComponent : IComponent {
 
-    public NNInfo endNode;
+    public NNInfo Node;
     public Vector3 Target;
     public MoveMode MoveMode;
 

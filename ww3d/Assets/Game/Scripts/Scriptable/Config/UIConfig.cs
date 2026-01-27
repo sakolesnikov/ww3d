@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Configs/UIConfig", fileName = "UIConfig")]
+[CreateAssetMenu(menuName = "Configs/UI", fileName = "UIConfig")]
 public class UIConfig : ScriptableObject {
 
     [SerializeField]

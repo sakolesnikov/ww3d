@@ -11,13 +11,13 @@ public class InputSystemActionsInit : IInitSystem, IDisposeSystem {
     public void Init(EntityStore world) {
         inputSystem.Player.Enable();
         inputSystem.UI.Enable();
-        inputSystem.Cursor.Enable();
+        inputSystem.Mouse.Enable();
     }
 
     public void Dispose(EntityStore world) {
         inputSystem.Player.Disable();
         inputSystem.UI.Disable();
-        inputSystem.Cursor.Disable();
+        inputSystem.Mouse.Disable();
     }
 
 }

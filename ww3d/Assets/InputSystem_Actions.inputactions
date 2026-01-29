@@ -32,15 +32,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "MouseRight",
-                    "type": "Button",
-                    "id": "7b2c5f9b-4050-47f3-aa19-07096e6261df",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -74,17 +65,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4c3543c1-21d2-49ca-bcc9-7d8fc6a5a5b8",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "MouseRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -607,7 +587,7 @@
             ]
         },
         {
-            "name": "Cursor",
+            "name": "Mouse",
             "id": "6bf508a4-1fef-4ee9-ac12-80f5b23254d5",
             "actions": [
                 {
@@ -618,6 +598,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "RightButton",
+                    "type": "Button",
+                    "id": "57599c4d-472b-454f-8033-9293ddd1cdd6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftButton",
+                    "type": "Button",
+                    "id": "1e824765-f69c-4021-929b-1e8d734e4245",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -629,6 +627,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a6e07f8-522f-4da7-9422-a3e2aaa1359c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "RightButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b582e688-1407-429d-91a9-8970e4ee6698",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "LeftButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

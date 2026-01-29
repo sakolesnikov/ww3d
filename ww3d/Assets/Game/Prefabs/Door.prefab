@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 390130978337616363}
   - component: {fileID: 2098172214082760453}
   - component: {fileID: 8318245116428844294}
+  - component: {fileID: -7376402794957251175}
   m_Layer: 8
   m_Name: Door
   m_TagString: Untagged
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935f9a3838e247feb5bf6a913379a997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityDefinitionMono
-  entityDefinition: {fileID: 11400000, guid: e8b97eab202941c44a6b03b43e4c4e10, type: 2}
+  entityDefinition: {fileID: 11400000, guid: 4efcc10cb68622d479f870f9c0ee1aaa, type: 2}
 --- !u!114 &390130978337616363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +218,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorDebug
   open: 0
+--- !u!114 &-7376402794957251175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982879878173230892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d895f5c74b541b78ccbf2a1bc31fe3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipKey: 
 --- !u!1 &5733759755837099595
 GameObject:
   m_ObjectHideFlags: 0

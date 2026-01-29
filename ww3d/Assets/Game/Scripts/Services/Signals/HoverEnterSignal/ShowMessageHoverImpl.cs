@@ -10,12 +10,12 @@ public class ShowMessageHoverImpl : GenericSignal<HoverEnterSignal> {
     private readonly EntityStore world;
 
     protected override void Signal(Signal<HoverEnterSignal> signal) {
-        var entity = signal.Event.Value;
+        var entity = signal.Entity;
         if (entity.HasComponent<TooltipComponent>()) {
             entity.AddComponent(new ShowMessageIntent());
         }
     }
 
-    public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef.GetType() == typeof(CursorDef);
+    public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef is IInteractable;
 
 }

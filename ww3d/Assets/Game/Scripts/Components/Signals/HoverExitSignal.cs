@@ -1,5 +1,1 @@
-﻿public struct HoverExitSignal {
-
-    public int EntityId;
-
-}
+﻿public struct HoverExitSignal { }

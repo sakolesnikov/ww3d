@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935f9a3838e247feb5bf6a913379a997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityDefinitionMono
-  entityDefinition: {fileID: 11400000, guid: 26f82afecaec3a244bc645110020b6a3, type: 2}
+  entityDefinition: {fileID: 11400000, guid: 79d8cc51a81a4504980f91405c453fcb, type: 2}
 --- !u!114 &1453923755459513373
 MonoBehaviour:
   m_ObjectHideFlags: 0

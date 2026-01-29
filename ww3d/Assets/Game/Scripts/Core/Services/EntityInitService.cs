@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Friflo.Engine.ECS;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -24,6 +25,10 @@ public class EntityInitService : ISelfRegisterable, IInitializable {
         }
 
         ref var defComp = ref entity.GetComponent<DefinitionComponent>();
+        if (defComp.Value == null) {
+            Debug.LogWarning($"No definition component attached to entity {entity.Name}");
+        }
+
         if (dictByType.TryGetValue(defComp.Value.GetType(), out var value)) {
             value.Initialize(entity);
         }

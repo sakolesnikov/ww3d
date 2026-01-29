@@ -839,10 +839,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraMouseLook
   sensitivity: 0.175
   smoothing: 7.5
+  minAngle: 30
+  maxAngle: 80
   zoomSensitivity: 1
   zoomSmoothing: 10
   minHeight: 3
-  maxHeight: 10
+  maxHeight: 9
 --- !u!114 &330585550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2949,11 +2951,11 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   configs:
-  - {fileID: 11400000, guid: 7985ea6a92136134eaa52be7b72ae5b3, type: 2}
   - {fileID: 11400000, guid: 85cd86ee38bbe7142bc93df704978696, type: 2}
   - {fileID: 11400000, guid: ddc56c78758208e47a7526657634ed51, type: 2}
   - {fileID: 11400000, guid: 52b8d79ba842ab246a8751a29c1e857f, type: 2}
   - {fileID: 11400000, guid: 9bc3ce1952b1f814c8843c6222a3897c, type: 2}
+  - {fileID: 11400000, guid: 6a0427b3578c4da4a97ce7e6c070db86, type: 2}
 --- !u!4 &1824939966
 Transform:
   m_ObjectHideFlags: 0
@@ -3193,15 +3195,7 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 303827173}
     m_Modifications:
-    - target: {fileID: 415975438481390072, guid: f128cb71acc4586498d2003906b0ee06, type: 3}
-      propertyPath: tooltipKey
-      value: table2
-      objectReference: {fileID: 0}
     - target: {fileID: 503308960159289115, guid: f128cb71acc4586498d2003906b0ee06, type: 3}
-      propertyPath: tooltipKey
-      value: table2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1212910095836853723, guid: f128cb71acc4586498d2003906b0ee06, type: 3}
       propertyPath: tooltipKey
       value: table2
       objectReference: {fileID: 0}
@@ -3249,8 +3243,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: TableMedicine2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1212910095836853723, guid: f128cb71acc4586498d2003906b0ee06, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3677,6 +3670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7376402794957251175, guid: f25a3b500fdc46a459c44a5274e4dfc9, type: 3}
+      propertyPath: tooltipKey
+      value: door1
+      objectReference: {fileID: 0}
     - target: {fileID: 4982879878173230892, guid: f25a3b500fdc46a459c44a5274e4dfc9, type: 3}
       propertyPath: m_Name
       value: Door

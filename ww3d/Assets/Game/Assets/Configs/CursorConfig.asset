@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: febfcb65942542ec8624ad76a55b61c1, type: 3}
-  m_Name: DoorDef
-  m_EditorClassIdentifier: Assembly-CSharp::DoorDef
+  m_Script: {fileID: 11500000, guid: 017650ee9ff14f58b7625dc6ee29a7ce, type: 3}
+  m_Name: CursorConfig
+  m_EditorClassIdentifier: Assembly-CSharp::CursorConfig
+  speedAnimation: 0.1

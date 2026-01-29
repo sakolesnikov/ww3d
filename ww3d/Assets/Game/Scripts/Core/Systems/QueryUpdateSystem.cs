@@ -9,9 +9,15 @@ public abstract class EntityListSystem<T> : QueryUpdateSystem<T> where T : struc
 
     private readonly EntityList entityList = new();
 
+    protected virtual bool CanProcess() => true;
+
     protected abstract void ProcessEntity(ref T component, Entity entity);
 
     protected override void OnUpdate() {
+        if (!CanProcess()) {
+            return;
+        }
+
         Query.Entities.ToEntityList(entityList);
         foreach (var entity in entityList) {
             ProcessEntity(ref entity.GetComponent<T>(), entity);

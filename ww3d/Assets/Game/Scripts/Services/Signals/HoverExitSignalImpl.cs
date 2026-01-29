@@ -10,11 +10,12 @@ public class HoverExitSignalImpl : GenericSignal<HoverExitSignal> {
     private readonly CursorService cursorService;
 
     protected override void Signal(Signal<HoverExitSignal> signal) {
-        signal.Entity.RemoveComponent<HoverComponent>();
-        var entity = world.GetEntityById(signal.Event.EntityId);
-        entity.RemoveComponent<ShowMessageIntent>();
+        if (world.GetCursor() is { IsNull: false } c) {
+            c.RemoveComponent<AnimationComponent>();
+            cursorService.Default();
+        }
     }
 
-    public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef.GetType() == typeof(CursorDef);
+    public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef is IInteractable;
 
 }

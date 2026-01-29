@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Definitions/Door", fileName = "DoorDef")]
-public class DoorDef : GenericEntityDefinition<DoorDef> { }
+[CreateAssetMenu(menuName = "Interactable/Door", fileName = "Door")]
+public class DoorDef : InteractableDef2<DoorDef> { }

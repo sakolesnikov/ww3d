@@ -8,6 +8,8 @@ public class CameraMouseLook : MonoBehaviour {
     [Header("Rotation")]
     public float sensitivity = 0.1f;
     public float smoothing = 15f;
+    public float minAngle = 40f;
+    public float maxAngle = 80f;
     [Header("Zoom")]
     public float zoomSensitivity = 0.1f;
     public float zoomSmoothing = 10f;
@@ -60,7 +62,7 @@ public class CameraMouseLook : MonoBehaviour {
         // Применяем накопленное сглаженное значение, даже если кнопка отпущена
         _currentRotation.x += _smoothedDelta.x * sensitivity;
         _currentRotation.y -= _smoothedDelta.y * sensitivity;
-        _currentRotation.y = Mathf.Clamp(_currentRotation.y, 40f, 80f);
+        _currentRotation.y = Mathf.Clamp(_currentRotation.y, minAngle, maxAngle);
 
         transform.localRotation = Quaternion.Euler(_currentRotation.y, _currentRotation.x, 0f);
     }

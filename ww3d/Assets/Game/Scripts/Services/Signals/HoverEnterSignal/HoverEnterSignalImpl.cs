@@ -10,9 +10,13 @@ public class HoverEnterSignalImpl : GenericSignal<HoverEnterSignal> {
     private readonly EntityStore world;
 
     protected override void Signal(Signal<HoverEnterSignal> signal) {
-        signal.Entity.AddComponent(new HoverComponent { Entity = signal.Event.Value });
+        var entity = signal.Entity;
+        var entityInteractable = entity.GetComponent<DefinitionComponent>().GetValue<IInteractable>();
+        if (world.GetCursor() is { IsNull: false } c) {
+            c.AddComponent(new AnimationComponent { Frames = entityInteractable.Cursor });
+        }
     }
 
-    public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef.GetType() == typeof(CursorDef);
+    public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef is IInteractable;
 
 }

@@ -43,6 +43,10 @@ MonoBehaviour:
     m_Key: door1
     m_Metadata:
       m_Items: []
+  - m_Id: 2347364636758016
+    m_Key: desk1
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

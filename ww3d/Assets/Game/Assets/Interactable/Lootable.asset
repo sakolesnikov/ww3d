@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb38886017248ce89fdf8df1dd8d010, type: 3}
+  m_Name: Lootable
+  m_EditorClassIdentifier: Assembly-CSharp::LootableDef
+  cursor:
+  - {fileID: 2800000, guid: cfa3b455903b04b4abaf3f292b07fad8, type: 3}
+  - {fileID: 2800000, guid: 22ac7d182af06f04390e012ced81ef04, type: 3}
+  - {fileID: 2800000, guid: b693ac0a119550a4297a9ee80552a00c, type: 3}
+  - {fileID: 2800000, guid: 623a7dcbf2230bc42befaa7cec877365, type: 3}
+  - {fileID: 2800000, guid: 627ae93898ce83149a913b4a3b5e5b2d, type: 3}
+  - {fileID: 2800000, guid: f3ae2f20e9bd69e43a6ebf12901fede1, type: 3}

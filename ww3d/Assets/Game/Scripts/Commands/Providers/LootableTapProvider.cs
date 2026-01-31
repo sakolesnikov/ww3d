@@ -11,11 +11,11 @@ public class LootableTapProvider : ITapProvider {
         Debug.Log($"nodePosition {node.position}, ctx.TargetPosition {ctx.TargetEntity}");
         queue.Enqueue(new MoveToCmd
         {
-            Node = AstarPath.active.GetNearest(ctx.TargetPosition, NNConstraint.Walkable),
+            Node = ctx.Node,
             MoveMode = ctx.MoveMode,
             Target = ctx.TargetPosition
         });
-        queue.Enqueue(new OpenInventoryCmd());
+        queue.Enqueue(new OpenExchangeCmd { Target = ctx.TargetEntity });
     }
 
     public int Order => 1;

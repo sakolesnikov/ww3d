@@ -1,9 +1,9 @@
 ﻿using Friflo.Engine.ECS;
-using UnityEngine.UI;
+using Transform = UnityEngine.Transform;
 
 public struct ExchangeComponent : IComponent {
 
-    public GridLayoutGroup Another;
-    public GridLayoutGroup Player;
+    public Transform Container;
+    public Transform Player;
 
 }

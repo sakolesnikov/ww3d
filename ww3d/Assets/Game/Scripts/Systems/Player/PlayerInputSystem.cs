@@ -1,18 +1,20 @@
 ﻿using Friflo.Engine.ECS;
-using Pathfinding;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
 
 [LevelScope]
-public class PlayerInputSystem : IInitSystem, IDisposeSystem {
+public class PlayerInputSystem : BaseUpdateSystem, IInitSystem, IDisposeSystem {
 
     [Inject]
     private readonly InputSystem_Actions input;
     [Inject]
     private readonly EntityStore world;
+    [Inject]
+    private readonly IEventSystem eventSystem;
     private Camera camera;
     private Entity player;
+    private bool IsPointerOverGameObject;
 
     public void Init(EntityStore world) {
         player = world.GetPlayer();
@@ -35,7 +37,15 @@ public class PlayerInputSystem : IInitSystem, IDisposeSystem {
         input.Player.Run.performed -= OnRunPerformed;
     }
 
+    protected override void OnUpdate() {
+        IsPointerOverGameObject = eventSystem.IsPointerOverGameObject();
+    }
+
     private void OnRunPerformed(InputAction.CallbackContext context) {
+        if (IsPointerOverGameObject) {
+            return;
+        }
+
         if (player == default || camera == null) {
             return;
         }
@@ -49,6 +59,10 @@ public class PlayerInputSystem : IInitSystem, IDisposeSystem {
     }
 
     private void OnWalkPerformed(InputAction.CallbackContext context) {
+        if (IsPointerOverGameObject) {
+            return;
+        }
+
         if (player == default || camera == null) {
             return;
         }
@@ -64,8 +78,6 @@ public class PlayerInputSystem : IInitSystem, IDisposeSystem {
     private void Move(Vector2 screenPosition, MoveMode mode) {
         var ray = camera.ScreenPointToRay(screenPosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity, Masks.Ground | Masks.Interactable)) {
-            var node = AstarPath.active.GetNearest(hit.point, NNConstraint.Walkable);
-            Debug.Log($"hit.name {hit.collider.name} hit.point {hit.point} node.position {node.position} node center {(Vector3)node.node.position}");
             var entityMono = hit.collider.GetComponent<AbstractEntityMono>();
             player.AddComponent(new TapIntentComponent
             {

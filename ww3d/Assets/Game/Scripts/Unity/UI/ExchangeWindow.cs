@@ -1,6 +1,7 @@
 using Friflo.Engine.ECS;
 using UnityEngine;
 using UnityEngine.UI;
+using Transform = UnityEngine.Transform;
 
 public class ExchangeWindow : MonoBehaviour, IEntityAware {
 
@@ -9,8 +10,8 @@ public class ExchangeWindow : MonoBehaviour, IEntityAware {
     [SerializeField]
     private GridLayoutGroup playerContent;
     private Entity entity;
-    public GridLayoutGroup AnotherContent => anotherContent;
-    public GridLayoutGroup PlayerContent => playerContent;
+    public Transform AnotherContent => anotherContent.transform;
+    public Transform PlayerContent => playerContent.transform;
 
     public void Close() {
         entity.EmitSignal(new CloseExchangeSignal());

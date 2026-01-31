@@ -21,7 +21,7 @@ public class LevelLifetimeScope : DefaultLifetimeScope<LevelScopeAttribute> {
             bezierTangentLength = 0.11f
         };
         builder.RegisterInstance(ssm);
-
+        // builder.Register(resolver => EventSystem.current, Lifetime.Singleton);
         builder.Register<InputSystem_Actions>(Lifetime.Singleton);
         builder.RegisterInstance(new ObjectPool<PooledCommandQueue>(() => new PooledCommandQueue(), actionOnRelease: cq => cq.Clear()));
 

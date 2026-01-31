@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fe96c6ae0324ca587b2d05a28e37a34, type: 3}
   m_Name: DogTag
   m_EditorClassIdentifier: Assembly-CSharp::DogTag
-  sprite: {fileID: -7506344769853394746, guid: 4ae1aa7068541684bb98279ccefc9357, type: 3}
+  sprite: {fileID: 21300000, guid: 4ae1aa7068541684bb98279ccefc9357, type: 3}
   amount: 1

@@ -10,54 +10,10 @@ public class DropSignalImpl : GenericSignal<DropSignal> {
 
     protected override void Signal(Signal<DropSignal> signal) {
         var itemEntity = signal.Entity;
-        // var player = world.GetPlayer();
-
-        // itemEntity.GetComponent<ImageComponent>().Value.raycastTarget = true;
         var transform = itemEntity.GetTransform();
         itemEntity.GetComponent<ParentTransformComponent>().Value = signal.Event.Transform;
         // transform.SetParent(parentTransform, false);
 
-        // if (signal.Event.Area == DropAreaEnum.USER) {
-        //     if (!player.TryGetRelation<ContainsRelation, Entity>(lootEntity, out var rel)) {
-        //         var entitiesRelationToContainer = lootEntity.GetIncomingLinks<ContainsRelation>();
-        //         foreach (var entityRelation in entitiesRelationToContainer) {
-        //             entityRelation.Entity.RemoveRelation<ContainsRelation>(lootEntity);
-        //         }
-        //
-        //         player.AddRelation(new ContainsRelation { Entity = lootEntity });
-        //     }
-        //
-        //     if (player.HasComponent<LeftHandComponent>()) {
-        //         ref var leftHandComp = ref player.GetComponent<LeftHandComponent>();
-        //         if (leftHandComp.Entity.Id == lootEntity.Id) {
-        //             player.RemoveComponent<LeftHandComponent>();
-        //             player.RemoveChild(leftHandComp.Entity);
-        //         }
-        //     }
-        //
-        //     if (player.HasComponent<RightHandComponent>()) {
-        //         ref var rightHandComp = ref player.GetComponent<RightHandComponent>();
-        //         if (rightHandComp.Entity.Id == lootEntity.Id) {
-        //             player.RemoveComponent<RightHandComponent>();
-        //             player.RemoveChild(rightHandComp.Entity);
-        //         }
-        //     }
-        // }
-        //
-        // if (signal.Event.Area == DropAreaEnum.CONTAINER) {
-        //     if (player.TryGetRelation<ContainsRelation, Entity>(lootEntity, out var relation)) {
-        //         player.RemoveRelation<ContainsRelation>(lootEntity);
-        //         var links = lootEntity.GetIncomingLinks<LeftHandComponent>();
-        //         if (links.Count > 0) {
-        //             player.RemoveComponent<LeftHandComponent>();
-        //             player.RemoveChild(lootEntity);
-        //         }
-        //
-        //         ref var tappedComp = ref player.GetComponent<TappedEntityComponent>();
-        //         tappedComp.Value.AddRelation(new ContainsRelation { Entity = lootEntity });
-        //     }
-        // }
-        //
         // if (signal.Event.Area == DropAreaEnum.LEFT_HAND) {
         //     if (player.HasComponent<LeftHandComponent>()) {
         //         ref var leftHandComp = ref player.GetComponent<LeftHandComponent>();

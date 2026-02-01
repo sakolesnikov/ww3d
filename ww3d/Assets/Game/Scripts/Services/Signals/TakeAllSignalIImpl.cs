@@ -11,10 +11,10 @@ public class TakeAllSignalIImpl : GenericSignal<TakeAllSignal> {
         var inventory = world.GetExchange();
         ref var exchangeComp = ref inventory.GetComponent<ExchangeComponent>();
         var inventoryRelations = inventory.GetRelations<ShowsRelation>();
-        foreach (var relation in inventoryRelations) {
-            relation.Entity.EmitSignal(new DropSignal { Area = DropAreaEnum.USER, Transform = exchangeComp.Player.transform });
-            relation.Entity.EmitSignal(new EndDragSignal());
-        }
+        // foreach (var relation in inventoryRelations) {
+        // relation.Entity.EmitSignal(new DropSignal { Area = DropAreaEnum.USER, Transform = exchangeComp.Player.transform });
+        // relation.Entity.EmitSignal(new EndDragSignal());
+        // }
     }
 
     public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef.GetType() == typeof(ExchangeDef);

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public struct DropSignal {
+public struct DropToUserSignal {
 
     public Transform Transform;
 

@@ -21,8 +21,8 @@ public class ExchangeSystem : EntityListSystem<OpenExchangeRequest> {
         var playerRelations = player.GetRelations<ContainsRelation>();
         SetParent(ref playerRelations, ref inventory, exchangeComp.Player);
 
-
         player.RemoveComponent<OpenExchangeRequest>();
+        inventory.AddComponent(new OpenedComponent { Value = openInventoryRequest.Target });
         inventory.GetComponent<TransformComponent>().Value.GetChild(0).gameObject.SetActive(true);
     }
 

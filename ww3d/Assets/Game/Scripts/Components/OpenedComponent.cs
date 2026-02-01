@@ -1,6 +1,6 @@
 ﻿using Friflo.Engine.ECS;
 
-public struct TappedEntityComponent : IComponent {
+public struct OpenedComponent : IComponent {
 
     public Entity Value;
 

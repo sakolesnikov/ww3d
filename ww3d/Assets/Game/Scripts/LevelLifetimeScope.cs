@@ -33,6 +33,11 @@ public class LevelLifetimeScope : DefaultLifetimeScope<LevelScopeAttribute> {
 
         builder
             .Register(container =>
+                container.Resolve<InventoryPoolFactory>().CreateItemShadowPool(), Lifetime.Singleton)
+            .Keyed(PrefabItemShadowDef.Name);
+
+        builder
+            .Register(container =>
                 container.Resolve<EntityMonoPoolProvider>().Create(GetConfig<UIConfig>().MessagePrefab), Lifetime.Singleton)
             .Keyed(MessageDef.Name);
     }

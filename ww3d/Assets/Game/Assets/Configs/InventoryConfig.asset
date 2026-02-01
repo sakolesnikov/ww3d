@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: InventoryConfig
   m_EditorClassIdentifier: Assembly-CSharp::InventoryConfig
   itemPrefab: {fileID: 8042129752505679509, guid: 63561ad68403c074a808160370ece499, type: 3}
+  itemShadowPrefab: {fileID: 8042129752505679509, guid: dd0d7400cb531cc4eb42ef65a400a6a5, type: 3}

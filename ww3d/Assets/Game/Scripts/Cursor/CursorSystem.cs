@@ -2,7 +2,7 @@
 using UnityEngine;
 using VContainer;
 
-[LevelScope]
+// [LevelScope]
 public class CursorSystem : EntityListSystem<CursorComponent>, IInitSystem {
 
     [Inject]
@@ -22,7 +22,6 @@ public class CursorSystem : EntityListSystem<CursorComponent>, IInitSystem {
         !cameraEntity.IsNull && !eventSystem.IsPointerOverGameObject();
 
     protected override void ProcessEntity(ref CursorComponent component, Entity cursorEntity) {
-        // Debug.Log("CursorSystem");
         ref var cameraComp = ref cameraEntity.GetComponent<CameraComponent>();
         var camera = cameraComp.Value;
         var position = input.Mouse.Position.ReadValue<Vector2>();

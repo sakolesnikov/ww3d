@@ -9,9 +9,10 @@ public class ItemProvider : ISelfRegisterable {
     [Key(nameof(PrefabItemDef))]
     private readonly ObjectPool<AbstractEntityMono> itemPool;
     [Inject]
-    private readonly EntityStore world;
+    [Key(nameof(PrefabItemShadowDef))]
+    private readonly ObjectPool<AbstractEntityMono> itemShadowPool;
     [Inject]
-    private readonly SignalRegistrationService signalRegistrationService;
+    private readonly EntityStore world;
 
     public Entity GetItemEntity(LootDef loot) {
         var entityMono = itemPool.Get();
@@ -24,6 +25,29 @@ public class ItemProvider : ISelfRegisterable {
         defComp.Value = loot;
         prefabItemEntity.GetComponent<EntityName>().value = loot.EntityType;
         return prefabItemEntity;
+        // return default;
+    }
+
+    public Entity GetShadowEntity(LootDef loot) {
+        var entityMono = itemShadowPool.Get();
+        entityMono.transform.SetParent(world.GetCanvas().transform, false);
+        var prefabItemShadowEntity = entityMono.GetEntity();
+        var image = prefabItemShadowEntity.GetComponent<ImageComponent>().Value;
+        image.sprite = loot.Sprite;
+        ref var defComp = ref prefabItemShadowEntity.GetComponent<DefinitionComponent>();
+        defComp.Value = loot;
+        prefabItemShadowEntity.GetComponent<EntityName>().value = loot.EntityType;
+        return prefabItemShadowEntity;
+    }
+
+    public void ReleaseItem(ref Entity shadowEntity) {
+        var go = shadowEntity.GetComponent<GameObjectComponent>().Value;
+        itemPool.Release(go.GetComponent<AbstractEntityMono>());
+    }
+
+    public void ReleaseShadow(ref Entity shadowEntity) {
+        var go = shadowEntity.GetComponent<GameObjectComponent>().Value;
+        itemShadowPool.Release(go.GetComponent<AbstractEntityMono>());
     }
 
 }

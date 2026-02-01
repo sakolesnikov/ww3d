@@ -1,5 +1,4 @@
 ﻿using Friflo.Engine.ECS;
-using UnityEngine;
 using VContainer;
 
 /// <summary>
@@ -15,17 +14,26 @@ public class BeginDragSignalImpl : GenericSignal<BeginDragSignal> {
 
     [Inject]
     private readonly EntityStore world;
+    [Inject]
+    private readonly ItemProvider itemProvider;
 
     protected override void Signal(Signal<BeginDragSignal> signal) {
         var itemEntity = signal.Entity;
+        var lootDef = itemEntity.GetComponent<DefinitionComponent>().GetValue<LootDef>();
         var canvas = world.GetCanvas();
         var itemTransform = itemEntity.GetTransform();
-        ref var imageComp = ref itemEntity.GetComponent<ImageComponent>();
-        var color = imageComp.Value.color;
-        imageComp.Value.raycastTarget = false;
+        var itemImage = itemEntity.GetComponent<ImageComponent>().Value;
+        itemImage.raycastTarget = false;
+
         itemEntity.GetComponent<ParentTransformComponent>().Value = itemTransform.parent;
+        var itemIndex = itemTransform.GetSiblingIndex();
         itemTransform.SetParent(canvas.transform);
-        
+
+        var shadowEntity = itemProvider.GetShadowEntity(lootDef);
+        itemEntity.AddComponent(new ShadowComponent { Value = shadowEntity });
+        var shadowTransform = shadowEntity.GetTransform();
+        shadowTransform.SetParent(itemEntity.GetComponent<ParentTransformComponent>().Value);
+        shadowTransform.SetSiblingIndex(itemIndex);
     }
 
     public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef is LootDef;

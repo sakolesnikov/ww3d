@@ -1,5 +1,4 @@
 ﻿using Friflo.Engine.ECS;
-using UnityEngine;
 using VContainer;
 
 [LevelScope]
@@ -19,11 +18,15 @@ public class EndDragSignalImpl : GenericSignal<EndDragSignal> {
         parentTransformComp.Value = null;
         imageComp.Value.raycastTarget = true;
         itemTransform.SetParent(parentTransform);
-        Debug.Log(GetSiblingIndex(ref itemEntity.GetComponent<ShadowComponent>().Value));
-        itemTransform.SetSiblingIndex(GetSiblingIndex(ref itemEntity.GetComponent<ShadowComponent>().Value));
 
         ref var shadowComp = ref itemEntity.GetComponent<ShadowComponent>();
         var shadowTransform = shadowComp.Value.GetTransform();
+
+        // return back an item
+        if (parentTransform.GetInstanceID() == shadowTransform.parent.GetInstanceID()) {
+            itemTransform.SetSiblingIndex(GetSiblingIndex(ref itemEntity.GetComponent<ShadowComponent>().Value));
+        }
+
         shadowTransform.SetParent(world.GetCanvas().transform);
         itemProvider.ReleaseShadow(ref shadowComp.Value);
         itemEntity.RemoveComponent<ShadowComponent>();

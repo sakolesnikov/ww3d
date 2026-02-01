@@ -19,17 +19,20 @@ public class EndDragSignalImpl : GenericSignal<EndDragSignal> {
         imageComp.Value.raycastTarget = true;
         itemTransform.SetParent(parentTransform);
 
-        ref var shadowComp = ref itemEntity.GetComponent<ShadowComponent>();
-        var shadowTransform = shadowComp.Value.GetTransform();
+        // if the player did not press take all button
+        if (itemEntity.HasComponent<ShadowComponent>()) {
+            ref var shadowComp = ref itemEntity.GetComponent<ShadowComponent>();
+            var shadowTransform = shadowComp.Value.GetTransform();
 
-        // return back an item
-        if (parentTransform.GetInstanceID() == shadowTransform.parent.GetInstanceID()) {
-            itemTransform.SetSiblingIndex(GetSiblingIndex(ref itemEntity.GetComponent<ShadowComponent>().Value));
+            // return back an item
+            if (parentTransform.GetInstanceID() == shadowTransform.parent.GetInstanceID()) {
+                itemTransform.SetSiblingIndex(GetSiblingIndex(ref itemEntity.GetComponent<ShadowComponent>().Value));
+            }
+
+            shadowTransform.SetParent(world.GetCanvas().transform);
+            itemProvider.ReleaseShadow(ref shadowComp.Value);
+            itemEntity.RemoveComponent<ShadowComponent>();
         }
-
-        shadowTransform.SetParent(world.GetCanvas().transform);
-        itemProvider.ReleaseShadow(ref shadowComp.Value);
-        itemEntity.RemoveComponent<ShadowComponent>();
     }
 
     private int GetSiblingIndex(ref Entity entity) => entity.GetTransform().GetSiblingIndex();

@@ -34,7 +34,6 @@ public class PlayerInit : IEntityInitialization, IDisposable {
         stateMachine.AddState(runState);
         stateMachine.SetCurrentState(typeof(PlayerIdleState));
         entity.AddComponent(new FSMComponent { Value = stateMachine, CurrentTask = UniTask.CompletedTask });
-        entity.AddComponent(new ActiveItemComponent { Index = 1 });
         entity.OnComponentChanged += OnComponentChanged;
     }
 

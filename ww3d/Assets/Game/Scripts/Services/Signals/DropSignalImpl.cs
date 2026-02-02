@@ -14,19 +14,6 @@ public class DropSignalImpl : GenericSignal<DropSignal> {
         itemEntity.GetComponent<ParentTransformComponent>().Value = signal.Event.Transform;
         // transform.SetParent(parentTransform, false);
 
-        // if (signal.Event.Area == DropAreaEnum.LEFT_HAND) {
-        //     if (player.HasComponent<LeftHandComponent>()) {
-        //         ref var leftHandComp = ref player.GetComponent<LeftHandComponent>();
-        //         player.RemoveChild(leftHandComp.Entity);
-        //         ReParent(ref leftHandComp.Entity, lootEntity.GetComponent<ParentTransformComponent>().Value);
-        //         leftHandComp.Entity = lootEntity;
-        //         player.AddChild(leftHandComp.Entity);
-        //     } else {
-        //         player.AddComponent(new LeftHandComponent { Entity = lootEntity });
-        //         player.AddChild(lootEntity);
-        //     }
-        // }
-        //
         // if (signal.Event.Area == DropAreaEnum.RIGHT_HAND) {
         //     if (player.HasComponent<RightHandComponent>()) {
         //         ref var rightHandComp = ref player.GetComponent<RightHandComponent>();

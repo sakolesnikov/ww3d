@@ -1,15 +1,15 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
+public class AnotherContainer : DefaultItemContainer<DropToContainerSignal> {
 
-public class AnotherContainer : MonoBehaviour, IDropHandler {
-
-    public void OnDrop(PointerEventData eventData) {
-        var go = eventData.pointerDrag;
-        var entityMono = go.GetComponent<AbstractEntityMono>();
-        if (entityMono) {
-            var lootEntity = entityMono.GetEntity();
-            lootEntity.EmitSignal(new DropToContainerSignal { Transform = transform });
-        }
-    }
+    protected override DropToContainerSignal GetSignal() => new() { Transform = transform };
 
 }
+//     public void OnDrop(PointerEventData eventData) {
+//         var go = eventData.pointerDrag;
+//         var entityMono = go.GetComponent<AbstractEntityMono>();
+//         if (entityMono) {
+//             var lootEntity = entityMono.GetEntity();
+//             lootEntity.EmitSignal(new DropToContainerSignal { Transform = transform });
+//         }
+//     }
+//
+// }

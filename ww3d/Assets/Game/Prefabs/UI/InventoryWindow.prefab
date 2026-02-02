@@ -33,7 +33,7 @@ RectTransform:
   m_Father: {fileID: 6172036601613548578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -102,7 +102,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2901868188397882231}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 7881723836765390031}
   - component: {fileID: 3320852716628090278}
   - component: {fileID: 2275005447119001959}
-  - component: {fileID: 1142932677177724998}
+  - component: {fileID: 8325101202069758961}
   m_Layer: 5
   m_Name: RightHand
   m_TagString: Untagged
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1142932677177724998
+--- !u!114 &8325101202069758961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,10 +273,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2944496048191138307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9ffc06cc694bb7833445a0bb47ed9d, type: 3}
+  m_Script: {fileID: 11500000, guid: ee2db8c442cc8684dbd49473da0c70bb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryContent
-  dropArea: 3
+  m_EditorClassIdentifier: Assembly-CSharp::RightHandContainer
 --- !u!1 &5286670331929784070
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,10 +543,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1037184060633706593}
-  - component: {fileID: 7919132496601839342}
   - component: {fileID: 8499140981579297430}
   - component: {fileID: 6957800067456732085}
   - component: {fileID: 8354719716708293307}
+  - component: {fileID: 4105761155575843670}
   m_Layer: 5
   m_Name: LeftHand
   m_TagString: Untagged
@@ -574,19 +573,6 @@ RectTransform:
   m_AnchoredPosition: {x: -188.19, y: -58.6}
   m_SizeDelta: {x: 168.01, y: 76.63}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7919132496601839342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7538225068365811774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9ffc06cc694bb7833445a0bb47ed9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryContent
-  dropArea: 2
 --- !u!114 &8499140981579297430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +635,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4105761155575843670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538225068365811774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f6ea8efdfbc7f4eb703ea7882c4af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeftHandContainer
 --- !u!1 &7549651977542136885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,8 +1028,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7451392208337623591}
   m_HandleRect: {fileID: 5481049739591679870}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1053,7 +1051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8553928770120307762
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1123,9 +1121,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1151471053979743444}
   - component: {fileID: 1494739695959864243}
-  - component: {fileID: 6393307181528806677}
   - component: {fileID: 4696419702296717867}
   - component: {fileID: 3683707409885868532}
+  - component: {fileID: 7193165623277050589}
   m_Layer: 5
   m_Name: InvPlayerContent
   m_TagString: Untagged
@@ -1147,10 +1145,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3307908687784072459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 459.28, y: 166.68999}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1494739695959864243
 CanvasRenderer:
@@ -1160,19 +1158,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681019953354852230}
   m_CullTransparentMesh: 1
---- !u!114 &6393307181528806677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681019953354852230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9ffc06cc694bb7833445a0bb47ed9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryContent
-  dropArea: 1
 --- !u!114 &4696419702296717867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,3 +1212,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7193165623277050589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8681019953354852230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd86a9f47a53e246ad6ede296995beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UserContainer

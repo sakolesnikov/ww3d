@@ -23,6 +23,8 @@ public class CloseExchangeSignalImpl : GenericSignal<CloseExchangeSignal> {
                 inventory.RemoveRelation<ShowsRelation>(list[i]);
             }
         }
+
+        inventory.RemoveComponent<OpenedComponent>();
     }
 
     public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef.GetType() == typeof(ExchangeDef);

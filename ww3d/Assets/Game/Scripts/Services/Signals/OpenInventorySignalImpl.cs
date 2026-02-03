@@ -14,14 +14,20 @@ public class OpenInventorySignalImpl : GenericSignal<OpenInventorySignal> {
         var invWnd = world.GetInventoryWnd();
         ref var invComp = ref invWnd.GetComponent<InventoryComponent>();
         SetParent(ref playerRelations, ref invWnd, invComp.PlayerContent);
+
+        var craftRelations = player.GetRelations<CraftRelation>();
+        foreach (var relation in craftRelations) {
+            SetParent(relation.Entity, invWnd.GetComponent<CraftComponent>().Content);
+        }
+
         if (player.HasComponent<LeftHandComponent>()) {
             ref var leftHandComp = ref player.GetComponent<LeftHandComponent>();
-            SetParent(ref leftHandComp.Entity, invComp.LeftHandContent);
+            SetParent(leftHandComp.Entity, invComp.LeftHandContent);
         }
 
         if (player.HasComponent<RightHandComponent>()) {
             ref var rightHandComp = ref player.GetComponent<RightHandComponent>();
-            SetParent(ref rightHandComp.Entity, invComp.RightHandContent);
+            SetParent(rightHandComp.Entity, invComp.RightHandContent);
         }
     }
 
@@ -34,7 +40,7 @@ public class OpenInventorySignalImpl : GenericSignal<OpenInventorySignal> {
         }
     }
 
-    private void SetParent(ref Entity lootEntity, Transform parent) {
+    private void SetParent(Entity lootEntity, Transform parent) {
         lootEntity.GetComponent<TransformComponent>().Value.SetParent(parent, false);
         lootEntity.GetGameObject().SetActive(true);
     }

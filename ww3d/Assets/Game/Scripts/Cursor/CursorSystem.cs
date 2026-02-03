@@ -1,17 +1,17 @@
 ﻿using Friflo.Engine.ECS;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using VContainer;
 
-[LevelScope]
+// [LevelScope]
 public class CursorSystem : EntityListSystem<CursorComponent>, IInitSystem {
 
     [Inject]
     private readonly InputSystem_Actions input;
     [Inject]
     private readonly EntityStore world;
+    [Inject]
+    private readonly IEventSystem eventSystem;
     private int lastHoveredEntityId = -1;
-    private readonly EntityList entityList = new();
     private Entity cameraEntity;
 
     public void Init(EntityStore world) {
@@ -19,7 +19,7 @@ public class CursorSystem : EntityListSystem<CursorComponent>, IInitSystem {
     }
 
     protected override bool CanProcess() =>
-        !cameraEntity.IsNull && !EventSystem.current.IsPointerOverGameObject();
+        !cameraEntity.IsNull && !eventSystem.IsPointerOverGameObject();
 
     protected override void ProcessEntity(ref CursorComponent component, Entity cursorEntity) {
         ref var cameraComp = ref cameraEntity.GetComponent<CameraComponent>();

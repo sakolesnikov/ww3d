@@ -2,32 +2,28 @@
 using Transform = UnityEngine.Transform;
 
 [LevelScope]
-public class ExchangeSystem : QueryUpdateSystem<OpenInventoryRequest, TappedEntityComponent> {
+public class ExchangeSystem : EntityListSystem<OpenExchangeRequest> {
 
     private Entity inventory;
-    private Entity player;
-    private readonly EntityList entityList = new();
 
     protected override void OnAddStore(EntityStore store) {
         inventory = store.GetExchange();
-        player = store.GetPlayer();
     }
 
-    protected override void OnUpdate() {
-        Query.Entities.ToEntityList(entityList);
-        foreach (var entity in entityList) {
-            ref var tappedComp = ref entity.GetComponent<TappedEntityComponent>();
-            var containerRelations = tappedComp.Value.GetRelations<ContainsRelation>();
-            ref var exchangeComp = ref inventory.GetComponent<ExchangeComponent>();
+    protected override bool CanProcess() => !inventory.IsNull;
 
-            SetParent(ref containerRelations, ref inventory, exchangeComp.Another.transform);
-            var playerRelations = player.GetRelations<ContainsRelation>();
-            SetParent(ref playerRelations, ref inventory, exchangeComp.Player.transform);
+    protected override void ProcessEntity(ref OpenExchangeRequest component, Entity player) {
+        ref var openInventoryRequest = ref player.GetComponent<OpenExchangeRequest>();
+        var containerRelations = openInventoryRequest.Target.GetRelations<ContainsRelation>();
+        ref var exchangeComp = ref inventory.GetComponent<ExchangeComponent>();
 
+        SetParent(ref containerRelations, ref inventory, exchangeComp.Container);
+        var playerRelations = player.GetRelations<ContainsRelation>();
+        SetParent(ref playerRelations, ref inventory, exchangeComp.Player);
 
-            entity.RemoveComponent<OpenInventoryRequest>();
-            inventory.GetComponent<TransformComponent>().Value.GetChild(0).gameObject.SetActive(true);
-        }
+        player.RemoveComponent<OpenExchangeRequest>();
+        inventory.AddComponent(new OpenedComponent { Value = openInventoryRequest.Target });
+        inventory.GetComponent<TransformComponent>().Value.GetChild(0).gameObject.SetActive(true);
     }
 
     private void SetParent(ref Relations<ContainsRelation> relations, ref Entity inventory, Transform parent) {

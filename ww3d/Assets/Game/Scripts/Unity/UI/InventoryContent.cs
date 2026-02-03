@@ -3,15 +3,12 @@ using UnityEngine.EventSystems;
 
 public class InventoryContent : MonoBehaviour, IDropHandler {
 
-    [SerializeField]
-    private DropAreaEnum dropArea;
-
     public void OnDrop(PointerEventData eventData) {
         var go = eventData.pointerDrag;
         var entityMono = go.GetComponent<AbstractEntityMono>();
         if (entityMono) {
             var entity = entityMono.GetEntity();
-            entity.EmitSignal(new DropSignal { Area = dropArea, Transform = transform });
+            // entity.EmitSignal(new DropSignal { Area = dropArea, Transform = transform });
         }
     }
 

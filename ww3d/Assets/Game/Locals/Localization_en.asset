@@ -46,6 +46,10 @@ MonoBehaviour:
     m_Localized: You can do something with it
     m_Metadata:
       m_Items: []
+  - m_Id: 2347364636758016
+    m_Localized: Common desk
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

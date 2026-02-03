@@ -9,6 +9,7 @@ public class InventoryInit : IEntityInitialization {
         var invWnd = go.GetComponent<InventoryWindow>();
         entity.AddComponent(new InventoryComponent
             { PlayerContent = invWnd.PlayerContent, LeftHandContent = invWnd.LeftHandContent, RightHandContent = invWnd.RightHandContent });
+        entity.AddComponent(new CraftComponent { Content = invWnd.CraftContent });
     }
 
     public Type getType() => typeof(InventoryWindowDef);

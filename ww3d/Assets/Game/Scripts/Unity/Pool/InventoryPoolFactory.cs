@@ -18,4 +18,13 @@ public class InventoryPoolFactory : ISelfRegisterable {
         );
     }
 
+    public ObjectPool<AbstractEntityMono> CreateItemShadowPool() {
+        return new ObjectPool<AbstractEntityMono>(
+            () => poolService.Instantiate(invConfig.ItemShadowPrefab),
+            poolService.ActionOnGet,
+            poolService.ActionOnRelease,
+            poolService.ActionOnDestroy
+        );
+    }
+
 }

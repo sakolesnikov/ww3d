@@ -9,6 +9,8 @@ public static class EntityStoreExtensions {
         return canvasComp.Value;
     }
 
+    public static Entity GetRecipeRegistry(this EntityStore world) => world.GetUniqueEntitySafe(RecipeRegistryDef.Name);
+
     public static Entity GetCamera(this EntityStore world) => world.GetUniqueEntitySafe(CameraDef.Name);
 
     public static Entity GetPlayer(this EntityStore world) => world.GetUniqueEntitySafe(PlayerDef.Name);

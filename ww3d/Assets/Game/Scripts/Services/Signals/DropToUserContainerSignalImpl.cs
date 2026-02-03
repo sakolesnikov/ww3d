@@ -13,6 +13,8 @@ public class DropToUserContainerSignalImpl : GenericSignal<DropToUserContainerSi
         var lootEntity = signal.Entity;
         lootEntity.GetComponent<ParentTransformComponent>().Value = containerTransform;
 
+        player.RemoveRelation<CraftRelation>(lootEntity);
+
         if (!player.TryGetRelation<ContainsRelation, Entity>(lootEntity, out var rel)) {
             var entitiesRelationToContainer = lootEntity.GetIncomingLinks<ContainsRelation>();
             foreach (var entityRelation in entitiesRelationToContainer) {

@@ -23,15 +23,10 @@ public abstract class DropToHandContainerSignalImpl<T, BODY_PART> : GenericSigna
             var prevHandEntity = player.GetComponent<BODY_PART>().Target;
             player.RemoveChild(prevHandEntity);
             ReParent(prevHandEntity, lootParent);
-
-            // reassign entity for body
-            player.AddComponent(newBody);
-            player.AddChild(lootEntity);
-        } else {
-            player.AddComponent(newBody);
-            player.AddChild(lootEntity);
         }
 
+        player.AddComponent(newBody);
+        player.AddChild(lootEntity);
         lootEntity.GetComponent<ParentTransformComponent>().Value = containerTransform;
     }
 

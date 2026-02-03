@@ -10,24 +10,7 @@ public class DropSignalImpl : GenericSignal<DropSignal> {
 
     protected override void Signal(Signal<DropSignal> signal) {
         var itemEntity = signal.Entity;
-        var transform = itemEntity.GetTransform();
         itemEntity.GetComponent<ParentTransformComponent>().Value = signal.Event.Transform;
-        // transform.SetParent(parentTransform, false);
-
-        // if (signal.Event.Area == DropAreaEnum.RIGHT_HAND) {
-        //     if (player.HasComponent<RightHandComponent>()) {
-        //         ref var rightHandComp = ref player.GetComponent<RightHandComponent>();
-        //         player.RemoveChild(rightHandComp.Entity);
-        //         ReParent(ref rightHandComp.Entity, lootEntity.GetComponent<ParentTransformComponent>().Value);
-        //         rightHandComp.Entity = lootEntity;
-        //         player.AddChild(lootEntity);
-        //     } else {
-        //         player.AddComponent(new RightHandComponent { Entity = lootEntity });
-        //         player.AddChild(lootEntity);
-        //     }
-        // }
-        //
-        // lootEntity.GetComponent<ParentTransformComponent>().Value = signal.Event.Transform;
     }
 
     private void ReParent(ref Entity lootEntity, Transform newParent) {

@@ -2,6 +2,6 @@
 
 public abstract class EntityDefinition : ScriptableObject {
 
-    public abstract string EntityType { get; }
+    public abstract string EntityName { get; }
 
 }

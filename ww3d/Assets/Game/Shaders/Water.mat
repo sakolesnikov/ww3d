@@ -124,7 +124,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _Transparency: 1
-    - _Wave_Speed: 0.00871
+    - _Wave_Speed: 0.00279
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1

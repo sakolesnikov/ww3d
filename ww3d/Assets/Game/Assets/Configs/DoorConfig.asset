@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DoorConfig
   m_EditorClassIdentifier: Assembly-CSharp::DoorConfig
   speed: 2
-  distance: 1.15
+  distance: 1.6

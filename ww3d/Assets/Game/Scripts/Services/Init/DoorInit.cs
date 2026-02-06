@@ -19,6 +19,7 @@ public class DoorInit : IEntityInitialization {
         var doorMono = go.GetComponent<Door>();
         entity.AddComponent(new AnimatorComponent { Value = go.GetComponent<Animator>() });
         entity.AddComponent(new DoorComponent { Value = doorMono.DoorTransform });
+        entity.AddComponent(new ColliderComponent { Value = doorMono.GetComponentInChildren<Collider>() });
         entity.AddTag<ClosedTag>();
 
         var fsm = new StateMachine(entity);

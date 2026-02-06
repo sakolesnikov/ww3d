@@ -11,14 +11,24 @@ Mesh:
   m_SubMeshes:
   - serializedVersion: 2
     firstByte: 0
-    indexCount: 156
+    indexCount: 72
     topology: 0
     baseVertex: 0
     firstVertex: 0
-    vertexCount: 49
+    vertexCount: 24
     localAABB:
-      m_Center: {x: 0, y: 0.069282055, z: -0.036786053}
-      m_Extent: {x: 0.08, y: 0.06928204, z: 0.03683796}
+      m_Center: {x: 0, y: 0.069282055, z: -0.01154068}
+      m_Extent: {x: 0.08, y: 0.06928204, z: 0.01159259}
+  - serializedVersion: 2
+    firstByte: 144
+    indexCount: 84
+    topology: 0
+    baseVertex: 0
+    firstVertex: 24
+    vertexCount: 25
+    localAABB:
+      m_Center: {x: 0, y: 0.06928205, z: -0.048378643}
+      m_Extent: {x: 0.06654514, y: 0.057629786, z: 0.025245372}
   m_Shapes:
     vertices: []
     shapes: []
@@ -173,6 +183,11 @@ Mesh:
       m_LodBias: 0
     m_NumLevels: 1
     m_SubMeshes:
+    - serializedVersion: 2
+      m_Levels:
+      - serializedVersion: 1
+        m_IndexStart: 0
+        m_IndexCount: 0
     - serializedVersion: 2
       m_Levels:
       - serializedVersion: 1

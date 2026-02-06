@@ -303,9 +303,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2575707073867405587}
-  - component: {fileID: 1695840200298472035}
+  - component: {fileID: 6412812725480063952}
   m_Layer: 7
-  m_Name: GameObject
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,7 +326,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7997476809941515548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1695840200298472035
+--- !u!65 &6412812725480063952
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,8 +345,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.9621751, y: 1.9856544, z: 0.3039562}
+  m_Center: {x: 0.07179168, y: 1.0130408, z: -0.0019107834}
 --- !u!1 &7654234718972350509
 GameObject:
   m_ObjectHideFlags: 0

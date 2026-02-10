@@ -9,7 +9,7 @@ public class ExchangeInit : IEntityInitialization {
     public void Initialize(Entity entity) {
         var go = entity.GetGameObject();
         var invWnd = go.GetComponentInChildren<ExchangeWindow>();
-        entity.AddComponent(new ExchangeComponent { Container = invWnd.AnotherContent, Player = invWnd.PlayerContent });
+        entity.AddComponent(new ExchangeComponent { Container = invWnd.AnotherContent });
     }
 
 }

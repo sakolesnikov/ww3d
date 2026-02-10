@@ -2,7 +2,6 @@
 using Friflo.Engine.ECS;
 using UnityEngine.UI;
 
-[LevelScope]
 public class ScrollDownSignalImpl : GenericSignal<ScrollDownSignal> {
 
     protected override void Signal(Signal<ScrollDownSignal> signal) {

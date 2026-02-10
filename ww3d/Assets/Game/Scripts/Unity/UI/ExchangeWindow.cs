@@ -7,11 +7,8 @@ public class ExchangeWindow : MonoBehaviour, IEntityAware {
 
     [SerializeField]
     private GridLayoutGroup anotherContent;
-    [SerializeField]
-    private GridLayoutGroup playerContent;
     private Entity entity;
     public Transform AnotherContent => anotherContent.transform;
-    public Transform PlayerContent => playerContent.transform;
 
     public void Close() {
         entity.EmitSignal(new CloseExchangeSignal());

@@ -19,16 +19,6 @@ public class OpenInventorySignalImpl : GenericSignal<OpenInventorySignal> {
         foreach (var relation in craftRelations) {
             SetParent(relation.Entity, invWnd.GetComponent<CraftComponent>().Content);
         }
-
-        if (player.HasComponent<LeftHandComponent>()) {
-            ref var leftHandComp = ref player.GetComponent<LeftHandComponent>();
-            SetParent(leftHandComp.Entity, invComp.LeftHandContent);
-        }
-
-        if (player.HasComponent<RightHandComponent>()) {
-            ref var rightHandComp = ref player.GetComponent<RightHandComponent>();
-            SetParent(rightHandComp.Entity, invComp.RightHandContent);
-        }
     }
 
     private void SetParent(ref Relations<ContainsRelation> relations, ref Entity invWnd, Transform parent) {

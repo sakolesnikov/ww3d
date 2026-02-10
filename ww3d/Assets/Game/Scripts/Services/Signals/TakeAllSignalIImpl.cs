@@ -1,7 +1,7 @@
 ﻿using Friflo.Engine.ECS;
 using VContainer;
 
-[LevelScope]
+// [LevelScope]
 public class TakeAllSignalIImpl : GenericSignal<TakeAllSignal> {
 
     [Inject]
@@ -12,8 +12,8 @@ public class TakeAllSignalIImpl : GenericSignal<TakeAllSignal> {
         ref var exchangeComp = ref inventory.GetComponent<ExchangeComponent>();
         var inventoryRelations = inventory.GetRelations<ShowsRelation>();
         foreach (var relation in inventoryRelations) {
-            relation.Entity.EmitSignal(new DropToUserContainerSignal { Transform = exchangeComp.Player.transform });
-            relation.Entity.EmitSignal(new EndDragSignal());
+            // relation.Entity.EmitSignal(new DropToUserContainerSignal { Transform = exchangeComp.Player.transform });
+            // relation.Entity.EmitSignal(new EndDragSignal());
         }
     }
 

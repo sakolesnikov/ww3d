@@ -1,4 +1,5 @@
 ﻿using Friflo.Engine.ECS;
+using UnityEngine;
 using VContainer;
 
 [LevelScope]
@@ -13,10 +14,11 @@ public class MessageSystem : EntityListSystem<ShowMessageRequest> {
     }
 
     protected override void ProcessEntity(ref ShowMessageRequest component, Entity entity) {
-        ref var msgComp = ref toolPanel.GetComponent<MessageComponent>();
-        msgProvider.Create(msgComp.Value, entity.GetComponent<TooltipComponent>().Key);
+        Debug.Log("add message");
+        // ref var msgComp = ref toolPanel.GetComponent<MessageComponent>();
+        // msgProvider.Create(msgComp.Value, entity.GetComponent<TooltipComponent>().Key);
         CommandBuffer.RemoveComponent<ShowMessageRequest>(entity.Id);
-        toolPanel.EmitSignal(new ScrollDownSignal());
+        // toolPanel.EmitSignal(new ScrollDownSignal());
     }
 
 }

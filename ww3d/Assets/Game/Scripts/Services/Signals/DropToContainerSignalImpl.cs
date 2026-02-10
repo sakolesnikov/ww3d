@@ -8,24 +8,11 @@ public class DropToContainerSignalImpl : GenericSignal<DropToContainerSignal> {
     private readonly EntityStore world;
 
     protected override void Signal(Signal<DropToContainerSignal> signal) {
-        var player = world.GetPlayer();
         var lootEntity = signal.Entity;
-        var containerTransform = signal.Event.Transform;
-        lootEntity.GetComponent<ParentTransformComponent>().Value = containerTransform;
-
-        if (player.TryGetRelation<ContainsRelation, Entity>(lootEntity, out var relation)) {
-            player.RemoveRelation<ContainsRelation>(lootEntity);
-            player.RemoveChild(lootEntity);
-            player.EmitSignal(new UpdateHandSignal());
-            // var links = lootEntity.GetIncomingLinks<LeftHandComponent>();
-            // if (links.Count > 0) {
-            // player.RemoveComponent<LeftHandComponent>();
-            // player.RemoveChild(lootEntity);
-            // }
-        }
-
+        signal.Entity.GetComponent<ParentTransformComponent>().Value = signal.Event.Transform;
         if (world.GetExchange() is { IsNull: false } exchange) {
             exchange.GetComponent<OpenedComponent>().Value.AddRelation(new ContainsRelation { Entity = lootEntity });
+            exchange.AddRelation(new ShowsRelation { Entity = lootEntity });
         }
     }
 

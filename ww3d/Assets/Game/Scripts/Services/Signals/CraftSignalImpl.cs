@@ -33,7 +33,7 @@ public class CraftSignalImpl : GenericSignal<CraftSignal> {
                     var invEntity = world.GetInventoryWnd();
                     lootEntity.GetGameObject().SetActive(true);
                     lootEntity.GetTransform().SetParent(invEntity.GetComponent<InventoryComponent>().PlayerContent, false);
-                    player.AddRelation(new ContainsRelation { Entity = lootEntity });
+                    player.AddRelation(new InventoryRelation { Entity = lootEntity });
                     world.GetInventoryWnd().AddRelation(new ShowsRelation { Entity = lootEntity });
                     foreach (var relation in relations) {
                         buffer.DeleteEntity(relation.Entity.Id);

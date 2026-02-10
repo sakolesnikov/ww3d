@@ -2,7 +2,7 @@
 using VContainer;
 using Transform = UnityEngine.Transform;
 
-[LevelScope]
+// [LevelScope]
 public class DropSignalImpl : GenericSignal<DropSignal> {
 
     [Inject]

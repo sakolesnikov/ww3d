@@ -25,6 +25,10 @@ public class BeginDragSignalImpl : GenericSignal<BeginDragSignal> {
         var itemImage = itemEntity.GetComponent<ImageComponent>().Value;
         itemImage.raycastTarget = false;
 
+        if (itemTransform.parent.TryGetComponent<IItemBeginDragHandler>(out var handler)) {
+            handler.OnItemBeginDrag(ref itemEntity);
+        }
+
         itemEntity.GetComponent<ParentTransformComponent>().Value = itemTransform.parent;
         var itemIndex = itemTransform.GetSiblingIndex();
         itemTransform.SetParent(canvas.transform);

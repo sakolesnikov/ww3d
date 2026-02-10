@@ -1,7 +1,7 @@
 ﻿using Friflo.Engine.ECS;
 using UnityEngine.UI;
 
-[LevelScope]
+// [LevelScope]
 public class ActiveItemSystem : QueryUpdateSystem {
 
     private Entity player;

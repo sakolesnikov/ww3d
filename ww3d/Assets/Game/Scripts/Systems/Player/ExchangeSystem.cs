@@ -18,8 +18,8 @@ public class ExchangeSystem : EntityListSystem<OpenExchangeRequest> {
         ref var exchangeComp = ref inventory.GetComponent<ExchangeComponent>();
 
         SetParent(ref containerRelations, ref inventory, exchangeComp.Container);
-        var playerRelations = player.GetRelations<ContainsRelation>();
-        SetParent(ref playerRelations, ref inventory, exchangeComp.Player);
+        // var playerRelations = player.GetRelations<ContainsRelation>();
+        // SetParent(ref playerRelations, ref inventory, exchangeComp.Player);
 
         player.RemoveComponent<OpenExchangeRequest>();
         inventory.AddComponent(new OpenedComponent { Value = openInventoryRequest.Target });

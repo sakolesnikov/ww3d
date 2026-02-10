@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 205.83, y: -266.31}
-  m_SizeDelta: {x: 128, y: 64}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7089754638696632617
 CanvasRenderer:
@@ -90,8 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb903826ccd4c1fb68e72313348f75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  image: {fileID: 7534901700631764008}
-  rectTransform: {fileID: 1063075182487852736}
 --- !u!114 &8042129752505679509
 MonoBehaviour:
   m_ObjectHideFlags: 0

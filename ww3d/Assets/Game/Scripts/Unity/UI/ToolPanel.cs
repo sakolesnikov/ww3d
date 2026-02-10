@@ -10,6 +10,8 @@ public class ToolPanel : MonoBehaviour, IEntityAware {
     [SerializeField]
     private List<Transform> crafts;
     private Entity entity;
+    public List<Transform> Items => items;
+    public List<Transform> Crafts => crafts;
 
     public void ShowInventory() {
         entity.EmitSignal(new OpenInventorySignal());

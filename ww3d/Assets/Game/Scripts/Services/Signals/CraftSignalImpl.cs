@@ -29,12 +29,26 @@ public class CraftSignalImpl : GenericSignal<CraftSignal> {
                 var recipeKey = RecipeKey.FromLoot(tempList);
                 ref var registryComp = ref registry.GetComponent<RecipeRegistryComponent>();
                 if (registryComp.Registry.TryGetValue(recipeKey, out var lootDef)) {
-                    var lootEntity = itemProvider.GetItemEntity(lootDef);
-                    var invEntity = world.GetInventoryWnd();
+                    var lootEntity = itemProvider.GetItemEntity(lootDef, true);
+                    var toolPanelEntity = world.GetToolPanel();
                     lootEntity.GetGameObject().SetActive(true);
-                    lootEntity.GetTransform().SetParent(invEntity.GetComponent<InventoryComponent>().PlayerContent, false);
-                    player.AddRelation(new InventoryRelation { Entity = lootEntity });
-                    world.GetInventoryWnd().AddRelation(new ShowsRelation { Entity = lootEntity });
+
+                    ref var toolPanelComp = ref toolPanelEntity.GetComponent<ToolPanelComponent>();
+
+                    var slotAvailable = toolPanelComp.FindEmptyItemSlot();
+                    if (slotAvailable != null) {
+                        player.AddRelation(new InventoryRelation { Entity = lootEntity });
+                    } else {
+                        slotAvailable = toolPanelComp.FindEmptyCraftSlot();
+                        if (slotAvailable != null) {
+                            player.AddRelation(new CraftRelation { Entity = lootEntity });
+                        }
+                    }
+
+                    if (slotAvailable != null) {
+                        lootEntity.GetTransform().SetParent(slotAvailable, false);
+                    }
+
                     foreach (var relation in relations) {
                         buffer.DeleteEntity(relation.Entity.Id);
                     }

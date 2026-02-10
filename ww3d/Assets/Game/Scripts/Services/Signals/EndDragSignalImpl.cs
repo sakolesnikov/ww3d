@@ -13,9 +13,8 @@ public class EndDragSignalImpl : GenericSignal<EndDragSignal> {
         var itemEntity = signal.Entity;
         ref var imageComp = ref itemEntity.GetComponent<ImageComponent>();
         var itemTransform = itemEntity.GetTransform();
-        ref var parentTransformComp = ref itemEntity.GetComponent<ParentTransformComponent>();
-        var parentTransform = parentTransformComp.Value;
-        parentTransformComp.Value = null;
+        var parentTransform = itemEntity.GetComponent<ParentTransformComponent>().Value;
+        itemEntity.RemoveComponent<ParentTransformComponent>();
         imageComp.Value.raycastTarget = true;
         itemTransform.SetParent(parentTransform);
 

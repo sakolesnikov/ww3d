@@ -29,14 +29,14 @@ public class BeginDragSignalImpl : GenericSignal<BeginDragSignal> {
             handler.OnItemBeginDrag(ref itemEntity);
         }
 
-        itemEntity.GetComponent<ParentTransformComponent>().Value = itemTransform.parent;
+        itemEntity.AddComponent(new ParentTransformComponent { Value = itemTransform.parent });
         var itemIndex = itemTransform.GetSiblingIndex();
         itemTransform.SetParent(canvas.transform);
 
         var shadowEntity = itemProvider.GetShadowEntity(lootDef);
         itemEntity.AddComponent(new ShadowComponent { Value = shadowEntity });
         var shadowTransform = shadowEntity.GetTransform();
-        shadowTransform.SetParent(itemEntity.GetComponent<ParentTransformComponent>().Value);
+        shadowTransform.SetParent(itemEntity.GetComponent<ParentTransformComponent>().Value, false);
         shadowTransform.SetSiblingIndex(itemIndex);
     }
 

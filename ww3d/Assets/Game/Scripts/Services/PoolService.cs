@@ -10,8 +10,8 @@ public class PoolService : ISelfRegisterable {
     public AbstractEntityMono Instantiate(AbstractEntityMono prefab) {
         var entityMono2 = container.Instantiate(prefab);
         ref var entity = ref entityMono2.GetEntity();
-        container.Resolve<EntityInitService>().Init(entity);
-        container.Resolve<SignalRegistrationService>().Register(entity);
+        // container.Resolve<EntityInitService>().Init(entity);
+        // container.Resolve<SignalRegistrationService>().Register(entity);
         return entityMono2;
     }
 

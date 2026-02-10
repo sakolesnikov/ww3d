@@ -1,7 +1,7 @@
 ﻿using System;
 using Friflo.Engine.ECS;
 
-[LevelScope]
+// [LevelScope]
 public class InventoryInit : IEntityInitialization {
 
     public void Initialize(Entity entity) {

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7534901700631764008}
   - component: {fileID: 8042129752505679509}
   - component: {fileID: 1622337631057278697}
+  - component: {fileID: -7767565854533282135}
+  - component: {fileID: -5634490576788781973}
   m_Layer: 5
   m_Name: ItemShadow
   m_TagString: Untagged
@@ -102,3 +104,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityDefinitionMono
   entityDefinition: {fileID: 11400000, guid: b7214660b1de5df4986467392c310a5f, type: 2}
+--- !u!114 &-7767565854533282135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286625613639996144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46602348f5f447dbb5f3003ef8794f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RectTransformComponentProvider
+--- !u!114 &-5634490576788781973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286625613639996144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a63be99d65c4bbd910f41919e6fa7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImageComponentProvider

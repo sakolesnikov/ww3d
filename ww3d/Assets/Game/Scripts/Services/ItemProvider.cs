@@ -13,30 +13,41 @@ public class ItemProvider : ISelfRegisterable {
     private readonly ObjectPool<AbstractEntityMono> itemShadowPool;
     [Inject]
     private readonly EntityStore world;
+    [Inject]
+    private readonly IObjectResolver container;
 
-    public Entity GetItemEntity(LootDef loot) {
+    public Entity GetItemEntity(LootDef loot) => GetItemEntity(loot, false);
+
+    public Entity GetItemEntity(LootDef loot, bool registerSignals) {
         var entityMono = itemPool.Get();
+        var prefabItemEntity = entityMono.GetEntity();
+        prefabItemEntity.GetComponent<DefinitionComponent>().Value = loot;
+        prefabItemEntity.GetComponent<EntityName>().value = loot.EntityName;
+        if (registerSignals) {
+            container.Resolve<SignalRegistrationService>().Register(prefabItemEntity);
+        }
+
         entityMono.gameObject.SetActive(false);
         entityMono.transform.SetParent(world.GetCanvas().transform, false);
-        var prefabItemEntity = entityMono.GetEntity();
+
         var image = prefabItemEntity.GetComponent<ImageComponent>().Value;
         image.sprite = loot.Sprite;
-        ref var defComp = ref prefabItemEntity.GetComponent<DefinitionComponent>();
-        defComp.Value = loot;
-        prefabItemEntity.GetComponent<EntityName>().value = loot.EntityName;
+
+
         return prefabItemEntity;
-        // return default;
     }
 
     public Entity GetShadowEntity(LootDef loot) {
         var entityMono = itemShadowPool.Get();
         entityMono.transform.SetParent(world.GetCanvas().transform, false);
         var prefabItemShadowEntity = entityMono.GetEntity();
+        prefabItemShadowEntity.GetComponent<EntityName>().value = loot.EntityName;
+        prefabItemShadowEntity.GetComponent<DefinitionComponent>().Value = loot;
+        // container.Resolve<EntityInitService>().Init(prefabItemShadowEntity);
+        // container.Resolve<SignalRegistrationService>().Register(prefabItemShadowEntity);
+
         var image = prefabItemShadowEntity.GetComponent<ImageComponent>().Value;
         image.sprite = loot.Sprite;
-        ref var defComp = ref prefabItemShadowEntity.GetComponent<DefinitionComponent>();
-        defComp.Value = loot;
-        prefabItemShadowEntity.GetComponent<EntityName>().value = loot.EntityName;
         return prefabItemShadowEntity;
     }
 

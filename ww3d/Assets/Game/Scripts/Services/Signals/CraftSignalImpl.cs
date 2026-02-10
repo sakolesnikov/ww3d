@@ -67,6 +67,6 @@ public class CraftSignalImpl : GenericSignal<CraftSignal> {
         buffer.Playback();
     }
 
-    public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef.GetType() == typeof(InventoryWindowDef);
+    public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef.GetType() == typeof(ToolPanelDef);
 
 }

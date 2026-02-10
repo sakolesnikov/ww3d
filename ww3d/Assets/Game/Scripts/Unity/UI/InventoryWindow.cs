@@ -22,10 +22,6 @@ public class InventoryWindow : MonoBehaviour, IEntityAware {
         entity.EmitSignal(new CloseInventorySignal());
     }
 
-    public void Craft() {
-        entity.EmitSignal(new CraftSignal());
-    }
-
     public void OnEntityReady(ref Entity entity) {
         this.entity = entity;
     }

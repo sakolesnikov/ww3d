@@ -19,8 +19,8 @@ public class ToolPanel : MonoBehaviour, IEntityAware {
         this.entity = entity;
     }
 
-    public void SwapHands() {
-        entity.EmitSignal(new SwapHandsSignal());
+    public void Craft() {
+        entity.EmitSignal(new CraftSignal());
     }
 
 }

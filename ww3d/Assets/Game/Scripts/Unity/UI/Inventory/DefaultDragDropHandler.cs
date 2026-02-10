@@ -15,10 +15,10 @@ public abstract class DefaultDragDropHandler<T> : MonoBehaviour, IDropHandler wh
         }
     }
 
-    protected void RemoveLinks<T>(ref Entity entity) where T : struct, ILinkRelation {
-        var relations = entity.GetIncomingLinks<T>();
+    protected void RemoveLinks<TRelation>(ref Entity entity) where TRelation : struct, ILinkRelation {
+        var relations = entity.GetIncomingLinks<TRelation>();
         foreach (var relation in relations) {
-            relation.Entity.RemoveRelation<T>(entity);
+            relation.Entity.RemoveRelation<TRelation>(entity);
         }
     }
 

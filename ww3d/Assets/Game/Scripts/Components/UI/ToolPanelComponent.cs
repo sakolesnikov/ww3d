@@ -25,13 +25,13 @@ public struct ToolPanelComponent : IComponent {
 
     public Transform FindEmptyCraftSlot() => FindEmptySlot(Crafts);
 
-    public Transform FindFirstEmptySlot() {
+    public bool IsAnyEmptySlot() {
         var slot = FindEmptySlot(Items);
         if (slot == null) {
-            return FindEmptySlot(Crafts);
+            return FindEmptySlot(Crafts) != null;
         }
 
-        return slot;
+        return slot != null;
     }
 
     public bool TryFindEmptySlot(out Transform slot, out ILinkRelation relation) {

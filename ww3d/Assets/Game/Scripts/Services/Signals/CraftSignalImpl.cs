@@ -27,40 +27,42 @@ public class CraftSignalImpl : GenericSignal<CraftSignal> {
                 }
 
                 var recipeKey = RecipeKey.FromLoot(tempList);
+                var toolPanelEntity = world.GetToolPanel();
+                ref var toolPanelComp = ref toolPanelEntity.GetComponent<ToolPanelComponent>();
                 ref var registryComp = ref registry.GetComponent<RecipeRegistryComponent>();
                 if (registryComp.Registry.TryGetValue(recipeKey, out var lootDef)) {
-                    var lootEntity = itemProvider.GetItemEntity(lootDef, true);
-                    var toolPanelEntity = world.GetToolPanel();
-                    lootEntity.GetGameObject().SetActive(true);
+                    if (toolPanelComp.IsAnyEmptySlot()) {
+                        var lootEntity = itemProvider.GetItemEntity(lootDef, true);
+                        lootEntity.GetGameObject().SetActive(true);
 
-                    ref var toolPanelComp = ref toolPanelEntity.GetComponent<ToolPanelComponent>();
 
-                    var slotAvailable = toolPanelComp.FindEmptyItemSlot();
-                    if (slotAvailable != null) {
-                        player.AddRelation(new InventoryRelation { Entity = lootEntity });
-                    } else {
-                        slotAvailable = toolPanelComp.FindEmptyCraftSlot();
+                        var slotAvailable = toolPanelComp.FindEmptyItemSlot();
                         if (slotAvailable != null) {
-                            player.AddRelation(new CraftRelation { Entity = lootEntity });
+                            player.AddRelation(new InventoryRelation { Entity = lootEntity });
+                        } else {
+                            slotAvailable = toolPanelComp.FindEmptyCraftSlot();
+                            if (slotAvailable != null) {
+                                player.AddRelation(new CraftRelation { Entity = lootEntity });
+                            }
                         }
-                    }
 
-                    if (slotAvailable != null) {
-                        lootEntity.GetTransform().SetParent(slotAvailable, false);
-                    }
+                        if (slotAvailable != null) {
+                            lootEntity.GetTransform().SetParent(slotAvailable, false);
+                        }
 
-                    foreach (var relation in relations) {
-                        buffer.DeleteEntity(relation.Entity.Id);
-                    }
+                        foreach (var relation in relations) {
+                            buffer.DeleteEntity(relation.Entity.Id);
+                        }
 
-                    var image = lootEntity.GetComponent<ImageComponent>().Value;
-                    LMotion.Create(1f, 0.4f, 0.3f)
-                        .WithLoops(6, LoopType.Yoyo)
-                        .Bind(alpha => {
-                            var c = image.color;
-                            c.a = alpha;
-                            image.color = c;
-                        });
+                        var image = lootEntity.GetComponent<ImageComponent>().Value;
+                        LMotion.Create(1f, 0.4f, 0.3f)
+                            .WithLoops(6, LoopType.Yoyo)
+                            .Bind(alpha => {
+                                var c = image.color;
+                                c.a = alpha;
+                                image.color = c;
+                            });
+                    }
                 } else {
                     if (relations.Length > 0) {
                         if (!relations[0].Entity.HasComponent<MotionComponent>()) {

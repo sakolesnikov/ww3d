@@ -1,6 +1,6 @@
 using Friflo.Engine.ECS;
 
-public class AnotherContainer : DefaultDragDropHandler<DropToContainerSignal>, IItemBeginDragHandler {
+public class AnotherContainer : DefaultDragDropHandler<DropToContainerSignal>, IItemBeginDragHandler, IItemContainer {
 
     protected override DropToContainerSignal GetSignal() => new() { Transform = transform };
 
@@ -8,5 +8,8 @@ public class AnotherContainer : DefaultDragDropHandler<DropToContainerSignal>, I
         RemoveLinks<ContainsRelation>(ref entity);
         RemoveLinks<ShowsRelation>(ref entity);
     }
+
+    public int MaxAllowed => int.MaxValue;
+    public int CurrentAmount => transform.childCount;
 
 }

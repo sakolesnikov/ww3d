@@ -1,4 +1,5 @@
-﻿using Friflo.Engine.ECS;
+﻿using System;
+using Friflo.Engine.ECS;
 using UnityEngine;
 
 public class Lootable : MonoBehaviour, IEntityAware {
@@ -10,5 +11,15 @@ public class Lootable : MonoBehaviour, IEntityAware {
     public void OnEntityReady(ref Entity entity) {
         entity.AddComponent(new LootComponent { Values = loots });
     }
+
+}
+
+[Serializable]
+public class LootInfo {
+
+    [SerializeField]
+    private LootDef loot;
+    [SerializeField]
+    private GameObject gameObject;
 
 }

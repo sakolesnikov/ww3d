@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public struct DropToUserContainerSignal {
+public struct DropToUserContainerSignal : ITransform {
 
-    public Transform Transform;
+    public Transform Transform { get; set; }
 
 }

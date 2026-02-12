@@ -32,7 +32,7 @@ public class CraftSignalImpl : GenericSignal<CraftSignal> {
                 ref var registryComp = ref registry.GetComponent<RecipeRegistryComponent>();
                 if (registryComp.Registry.TryGetValue(recipeKey, out var lootDef)) {
                     if (toolPanelComp.IsAnyEmptySlot()) {
-                        var lootEntity = itemProvider.GetItemEntity(lootDef, true);
+                        var lootEntity = itemProvider.GetItemEntity(lootDef, true, true);
                         lootEntity.GetGameObject().SetActive(true);
 
 
@@ -46,11 +46,11 @@ public class CraftSignalImpl : GenericSignal<CraftSignal> {
                             }
                         }
 
-                        if (slotAvailable != null) {
-                            lootEntity.GetTransform().SetParent(slotAvailable, false);
-                        }
+                        lootEntity.GetTransform().SetParent(slotAvailable, false);
 
                         foreach (var relation in relations) {
+                            var transform = relation.Entity.GetTransform();
+                            transform.SetParent(world.GetCanvas().transform, false);
                             buffer.DeleteEntity(relation.Entity.Id);
                         }
 
@@ -62,6 +62,9 @@ public class CraftSignalImpl : GenericSignal<CraftSignal> {
                                 c.a = alpha;
                                 image.color = c;
                             });
+                        if (lootEntity.TryGetComponent<LifecycleSignalsComponent>(out var lifecycleSignals)) {
+                            lifecycleSignals.CraftedSignal(world);
+                        }
                     }
                 } else {
                     if (relations.Length > 0) {

@@ -9,7 +9,12 @@ public static class EntityStoreExtensions {
         return canvasComp.Value;
     }
 
+    public static void EmitSignal<TEvent>(this EntityStore world, in TEvent ev) where TEvent : struct =>
+        world.GetEventBus().EmitSignal(ev);
+
     public static Entity GetRecipeRegistry(this EntityStore world) => world.GetUniqueEntitySafe(RecipeRegistryDef.Name);
+
+    public static Entity GetEventBus(this EntityStore world) => world.GetUniqueEntitySafe(SignalBusDef.Name);
 
     public static Entity GetCamera(this EntityStore world) => world.GetUniqueEntitySafe(CameraDef.Name);
 

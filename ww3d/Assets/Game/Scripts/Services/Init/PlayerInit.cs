@@ -27,7 +27,7 @@ public class PlayerInit : IEntityInitialization, IDisposable {
         entity.AddComponent(new SpeedComponent { Value = playerConfig.WalkSpeed });
         entity.AddComponent(new AnimatorComponent { Value = go.GetComponentInChildren<Animator>() });
         entity.AddComponent(new ActiveItemComponent { Index = 0 });
-        entity.AddComponent(new FlashlightComponent { Values = go.GetComponentsInChildren<Light>() });
+        entity.AddComponent(new FlashlightComponent { Values = go.GetComponentsInChildren<Light>(true) });
         var stateMachine = new StateMachine(entity);
         stateMachine.AddState(idleState);
         stateMachine.AddState(walkState);

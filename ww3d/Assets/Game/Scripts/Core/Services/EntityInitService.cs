@@ -27,6 +27,7 @@ public class EntityInitService : ISelfRegisterable, IInitializable {
         ref var defComp = ref entity.GetComponent<DefinitionComponent>();
         if (defComp.Value == null) {
             Debug.LogWarning($"No definition component attached to entity {entity.Name}");
+            return;
         }
 
         if (dictByType.TryGetValue(defComp.Value.GetType(), out var value)) {

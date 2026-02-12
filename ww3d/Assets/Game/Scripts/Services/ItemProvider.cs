@@ -16,13 +16,18 @@ public class ItemProvider : ISelfRegisterable {
     [Inject]
     private readonly IObjectResolver container;
 
-    public Entity GetItemEntity(LootDef loot) => GetItemEntity(loot, false);
+    public Entity GetItemEntity(LootDef loot) => GetItemEntity(loot, false, false);
 
-    public Entity GetItemEntity(LootDef loot, bool registerSignals) {
+    public Entity GetItemEntity(LootDef loot, bool init, bool registerSignals) {
         var entityMono = itemPool.Get();
         var prefabItemEntity = entityMono.GetEntity();
         prefabItemEntity.GetComponent<DefinitionComponent>().Value = loot;
         prefabItemEntity.GetComponent<EntityName>().value = loot.EntityName;
+
+        if (init) {
+            container.Resolve<EntityInitService>().Init(prefabItemEntity);
+        }
+
         if (registerSignals) {
             container.Resolve<SignalRegistrationService>().Register(prefabItemEntity);
         }

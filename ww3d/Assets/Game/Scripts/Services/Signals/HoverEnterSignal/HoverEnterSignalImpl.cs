@@ -17,7 +17,6 @@ public class HoverEnterSignalImpl : GenericSignal<HoverEnterSignal> {
         }
     }
 
-//еуы
     public override bool IsSupported(Entity entity, EntityDefinition entityDef) => entityDef is IInteractable;
 
 }

@@ -1148,6 +1148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 450808652640617628, guid: fb3b64fa438c6e748be62cb00576bf4b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 23b331be96104f64f91823955c27ea7e, type: 2}
     - target: {fileID: 2277723274449503758, guid: fb3b64fa438c6e748be62cb00576bf4b, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1160,6 +1164,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3385798170331294244, guid: fb3b64fa438c6e748be62cb00576bf4b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d7340424d313fbf46ad88e499155e01b, type: 2}
     - target: {fileID: 3631079747691677775, guid: fb3b64fa438c6e748be62cb00576bf4b, type: 3}
       propertyPath: m_Name
       value: sewer

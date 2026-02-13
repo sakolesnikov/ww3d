@@ -1,7 +1,12 @@
-﻿using Pathfinding;
+﻿using Friflo.Engine.ECS;
+using Pathfinding;
+using VContainer;
 
 [LevelScope]
 public class LootableTapProvider : ITapProvider {
+
+    [Inject]
+    private readonly EntityStore world;
 
     public bool CanHandle(in TapContext ctx) => ctx.HasTarget && ctx.TargetEntity.HasComponent<LootComponent>();
 
@@ -18,6 +23,7 @@ public class LootableTapProvider : ITapProvider {
             TargetEntity = ctx.TargetEntity
         });
         queue.Enqueue(new OpenExchangeCmd { Target = ctx.TargetEntity });
+        queue.Enqueue(new SetDefaultCursorCmd(world.GetCursor()));
     }
 
     public int Order => 1;

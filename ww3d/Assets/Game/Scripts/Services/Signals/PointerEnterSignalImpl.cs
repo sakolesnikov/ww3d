@@ -9,7 +9,6 @@ public class PointerEnterSignalImpl : GenericSignal<PointerEnterSignal> {
     private readonly EntityStore world;
 
     protected override void Signal(Signal<PointerEnterSignal> signal) {
-        Debug.Log("PointerEnterSignalImpl");
         var entity = signal.Entity;
         if (entity.TryGetComponent<TooltipComponent>(out var tooltipComp)) {
             entity.AddComponent<ShowTooltipIntent>();
@@ -27,7 +26,6 @@ public class PointerExitSignalImpl : GenericSignal<PointerExitSignal> {
     private readonly TooltipService tooltipService;
 
     protected override void Signal(Signal<PointerExitSignal> signal) {
-        Debug.Log("PointerExitSignalImpl");
         var entity = signal.Entity;
         if (entity.TryGetComponent<TooltipComponent>(out var tooltipComp)) {
             if (entity.HasComponent<ShowTooltipIntent>()) {

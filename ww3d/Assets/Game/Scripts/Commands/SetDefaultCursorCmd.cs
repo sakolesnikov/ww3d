@@ -7,7 +7,7 @@ public readonly struct SetDefaultCursorCmd : ICommand {
     public SetDefaultCursorCmd(Entity cursor) => this.cursor = cursor;
 
     public void Init(Entity actor) {
-        cursor.EmitSignal(new HoverExitSignal());
+        cursor.EmitSignal(new PointerExitSignal());
     }
 
     public bool IsFinished(Entity actor) => true;

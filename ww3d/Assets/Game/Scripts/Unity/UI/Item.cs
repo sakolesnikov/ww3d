@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IEntityAware {
+public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IEntityAware, IPointerEnterHandler, IPointerExitHandler {
 
     private Entity entity;
 
@@ -16,6 +16,14 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData) {
         entity.EmitSignal(new EndDragSignal());
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        entity.EmitSignal(new PointerEnterSignal());
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        entity.EmitSignal(new PointerExitSignal());
     }
 
     public void OnEntityReady(ref Entity entity) {

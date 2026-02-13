@@ -11,6 +11,7 @@ public class FlashlightChargedInit : IEntityInitialization {
             InventoryAddedSignal = static world => world.EmitSignal(new InventoryItemAddedSignal<FlashlightChargedDef>()),
             InventoryRemovedSignal = static world => world.EmitSignal(new InventoryItemRemovedSignal<FlashlightChargedDef>())
         });
+        entity.AddComponent(new TooltipComponent { Key = entity.GetComponent<DefinitionComponent>().Value.EntityName });
     }
 
     public Type getType() => typeof(FlashlightChargedDef);

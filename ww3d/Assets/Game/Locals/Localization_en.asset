@@ -43,11 +43,52 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2316195446722560
-    m_Localized: You can do something with it
+    m_Localized: A steel door, apparently taken from the armored bulkhead of the
+      army transport that brought the colonists here some 300 years ago.
     m_Metadata:
       m_Items: []
   - m_Id: 2347364636758016
     m_Localized: Common desk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7424696841998336
+    m_Localized: '<b>Military identification tag</b>.
+
+      Also informally known
+      as dog tag, is a common term for a specific type of identification tag worn
+      by military personnel'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7611943700729856
+    m_Localized: A flashlight (North American English) or electric torch (Commonwealth
+      English), usually shortened to torch, is a portable hand-held electric lamp.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7616245005619200
+    m_Localized: An electric battery is a source of electric power consisting of
+      one or more electrochemical cells with external connections for powering electrical
+      devices.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7616407891415040
+    m_Localized: The invention of the dry cell and miniature incandescent electric
+      lamps made the first battery-powered flashlights possible around 1899
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7616586371633152
+    m_Localized: 'A key is a device that is used to operate a lock (to lock or unlock
+      it). A typical key is a small piece of metal consisting of two parts: the bit
+      or blade'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7616910062850048
+    m_Localized: A first-aid kit is a collection of supplies and equipment used to
+      provide immediate medical care, known as first aid, for minor injuries and
+      emergencies until professional treatment becomes available.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7651769674174464
+    m_Localized: nitrogen3
     m_Metadata:
       m_Items: []
   references:

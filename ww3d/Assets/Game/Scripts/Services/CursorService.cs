@@ -1,14 +1,22 @@
-﻿using UnityEngine;
+﻿using Friflo.Engine.ECS;
+using UnityEngine;
+using VContainer;
 
 [LevelScope]
 public class CursorService : ISelfRegisterable {
 
-    public void LookUp() {
-        // SetCursor(cursorDef.LookUp);
-    }
+    [Inject]
+    private readonly EntityStore world;
 
     public void Default() {
+        RemoveAnimation();
         SetCursor(null);
+    }
+
+    private void RemoveAnimation() {
+        if (world.GetCursor() is { IsNull : false } cursorEntity) {
+            cursorEntity.RemoveComponent<AnimationComponent>();
+        }
     }
 
     public void SetCursor(Texture2D texture) {

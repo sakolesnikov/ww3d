@@ -4,10 +4,7 @@ public abstract class LootDef : EntityDefinition {
 
     [SerializeField]
     private Sprite sprite;
-    [SerializeField]
-    private int amount = 1;
     public Sprite Sprite => sprite;
-    public int Amount => amount;
 
 }
 

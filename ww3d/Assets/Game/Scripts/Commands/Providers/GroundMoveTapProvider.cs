@@ -18,8 +18,7 @@ public class GroundMoveTapProvider : ITapProvider {
         queue.Enqueue(new MoveToCmd
         {
             Node = AstarPath.active.GetNearest(ctx.TargetPosition, NNConstraint.Walkable),
-            MoveMode = ctx.MoveMode,
-            Target = ctx.TargetPosition
+            MoveMode = ctx.MoveMode
         });
     }
 

@@ -47,6 +47,34 @@ MonoBehaviour:
     m_Key: desk1
     m_Metadata:
       m_Items: []
+  - m_Id: 7424696841998336
+    m_Key: DogTagDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7611943700729856
+    m_Key: FlashlightUnchargedDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7616245005619200
+    m_Key: BatteryDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7616407891415040
+    m_Key: FlashlightChargedDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7616586371633152
+    m_Key: KeyCorridorDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7616910062850048
+    m_Key: MedkitDef
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7651769674174464
+    m_Key: nitrogen3
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

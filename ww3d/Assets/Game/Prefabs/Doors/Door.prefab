@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 2029225455521241089}
   - component: {fileID: 2192019492990958265}
   - component: {fileID: 2487168808232382619}
+  - component: {fileID: 905197766573715418}
   m_Layer: 8
   m_Name: Door
   m_TagString: Untagged
@@ -450,3 +451,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorDebug
   open: 0
+--- !u!114 &905197766573715418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7654234718972350509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d895f5c74b541b78ccbf2a1bc31fe3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipKey: door1

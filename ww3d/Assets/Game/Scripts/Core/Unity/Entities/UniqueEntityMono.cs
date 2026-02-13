@@ -1,13 +1,10 @@
 ﻿using Friflo.Engine.ECS;
-using UnityEngine;
 
 public class UniqueEntityMono : AbstractEntityMono {
 
-    [SerializeField]
-    private UniqueEntityEnum uniqueEntityEnum;
-
     protected override void PostAwake() {
-        Entity.AddComponent(new UniqueEntity(uniqueEntityEnum.GetValue()));
+        var entityDef = GetComponent<EntityDefinitionMono>();
+        Entity.AddComponent(new UniqueEntity(entityDef.EntityDefinition.EntityName));
     }
 
 }

@@ -1,2 +1,13 @@
 Key,Id,English(en),Russian(ru)
-"table1",1053828648960,"My favorite table","Твой любимый стол"
+"table1",1053828648960,"My favorite table","Мой любимый стол"
+"table2",156236554506240,"yet another favorite table (not mine)","ещё один любимый стол (не мой)"
+"ui.settings",525834323824640,"Settings","Настройки"
+"ui.continue",525923180154880,"Continue","Продолжить"
+"nitrogen1",560143990591488,"It’s some kind of a black box","Какая-то чёрная бочка"
+"nitrogen2",560325624926208,"A nitrogen barrel","Бочка с азотом"
+"door1",2316195446722560,"You can do something with it","С ней что-то можно сделать"
+"desk1",2347364636758016,"Common desk","Обычный стол"
+"DogTagDef",7424696841998336,"<b>Military identification tag</b>.
+Also informally known as dog tag, is a common term for a specific type of identification tag worn by military personnel","<b>Военный идентификационный жетон</b>
+Также неофициально называемый «армейским жетоном», — это общепринятое название определенного типа идентификационного жетона, который носят военнослужащие"
+"FlashlightUnchargedDef",7611943700729856,"A flashlight (North American English) or electric torch (Commonwealth English), usually shortened to torch, is a portable hand-held electric lamp.","Фонарик (в североамериканском английском) или электрический факел (в британском английском), обычно сокращенно называемый torch, — это портативная ручная электрическая лампа."

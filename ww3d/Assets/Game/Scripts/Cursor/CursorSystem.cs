@@ -2,7 +2,7 @@
 using UnityEngine;
 using VContainer;
 
-// [LevelScope]
+[LevelScope]
 public class CursorSystem : EntityListSystem<CursorComponent>, IInitSystem {
 
     [Inject]
@@ -35,14 +35,18 @@ public class CursorSystem : EntityListSystem<CursorComponent>, IInitSystem {
             if (hit.collider.TryGetComponent<AbstractEntityMono>(out var entityMono)) {
                 var hitEntity = entityMono.GetEntity();
                 if (lastHoveredEntityId != hitEntity.Id) {
-                    hitEntity.EmitSignal(new HoverEnterSignal());
+                    if (lastHoveredEntityId != -1) {
+                        world.GetEntityById(lastHoveredEntityId).EmitSignal(new PointerExitSignal());
+                    }
+
+                    hitEntity.EmitSignal(new PointerEnterSignal());
                 }
 
                 lastHoveredEntityId = hitEntity.Id;
             }
         } else {
             if (lastHoveredEntityId != -1) {
-                world.GetEntityById(lastHoveredEntityId).EmitSignal(new HoverExitSignal());
+                world.GetEntityById(lastHoveredEntityId).EmitSignal(new PointerExitSignal());
             }
 
             lastHoveredEntityId = -1;
